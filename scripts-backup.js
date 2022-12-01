@@ -43,7 +43,7 @@ console.log(newRandomLetter);
 function drawRiddle() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("cell" + i + j).innerHTML = "0"; //newRandomLetter();
+      document.getElementById("cell" + i + j).innerHTML = 0; //newRandomLetter();
     })
   );
 }
@@ -71,15 +71,15 @@ function reverseString(rndWord) {
 function testButton2() {
   var row = Math.floor(Math.random() * 10);
   var col = Math.floor(Math.random() * 10);
-  var cell = document.getElementById("cell" + row + col);
-  var switchRandomizer = Math.floor(Math.random() * 1) + 1;
-  
-  
+ // var cell = document.getElementById("cell" + row + col);
+  var switchRandomizer = Math.floor(Math.random() * 6) + 1;
+
+
   
   switch (switchRandomizer) {
     // ----- R O W S ------
     case 1:
-      if (row + rndWord.length <= riddleArray.length && testWord(cell.innerHTML, row, col) == true) {
+      if (row + rndWord.length <= riddleArray.length) {
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col);
           cell.innerHTML = "";
@@ -150,36 +150,29 @@ function testButton2() {
 
 
 /**************************W O R D - M A T C H - C H E C K E R***************** */
-function testWord(bool, row2, col2) {
-  var cell = bool;
-  var row = row2;
-  var col = col2;
- 
-  for (let k = 0; k < rndWord.length; k++) {
-  //  window.alert(cell.innerHTML = "cell" + (row2 + k) + col2)
-    if(cell !== "0") {
-      bool = false;
-      
+/*
+function ssd {
+  var i = 0; j = 0;
 
-     // window.alert(cell + "is" + bool);
-    } else {    
-     bool = true;
-   //  window.alert(cell + "is" + bool);
-    } 
-  } return bool;
-  // for (let i = 0; i < riddleArray.length; i++) {
-  //   for (let j = 0; j < riddleArray[i].length; j++) {
-  //     document.getElementById("cell" + i + j) = ;
-  //     cell.innerHTML = riddleArray[i][j];
-      
-      
-      // console.log(riddleArray[i][j]);
-    }; 
+riddleArray.forEach(function each(item) {
+  if (Array.isArray(item)) {
+    // If is array, continue repeat loop
+    item.forEach(each);
+    i++;
+    j = 0;
+  } else {
+    console.log("[" + i + "][" + j + "] = cell" + item);    
+    //console.log("cell" + i + j);
+    j++;
+  }
   
+})
   
+}
+console.log(riddleArray[3][2]); */
 /***********************C R E A T E  - M A P**********************/
 
-/* ----- working cell implement numbers 00-99 -----------------------
+
 function wordMatchCheck() {
   for (let i = 0; i < riddleArray.length; i++) {
     for (let j = 0; j < riddleArray[i].length; j++) {
@@ -192,7 +185,7 @@ function wordMatchCheck() {
     }; 
   } 
   }
-*/
+
 
 
 
@@ -200,14 +193,19 @@ function wordMatchCheck() {
 
 
 
+/* <------------------- works
+console.log(respec());
 
-
-
-
-
-
-/*
-var i = 0; j = 0;
+function respec() {
+for (let i = 0; i < riddleArray.length; i++) {
+  for (let j = 0; j < riddleArray[i].length; j++) {
+    riddleArray[i][j] = "cell" + i + j;
+    
+    // console.log(riddleArray[i][j]);
+  }; 
+} 
+} */
+/* var i = 0; j = 0;
 
 riddleArray.forEach(function each(item) {
   if (Array.isArray(item)) {
