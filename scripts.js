@@ -225,29 +225,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       return bool;
   }
 }
-// for (let i = 0; i < riddleArray.length; i++) {
-//   for (let j = 0; j < riddleArray[i].length; j++) {
-//     document.getElementById("cell" + i + j) = ;
-//     cell.innerHTML = riddleArray[i][j];
 
-// console.log(riddleArray[i][j]);
-
-/***********************C R E A T E  - M A P**********************/
-
-/* ----- working cell implement numbers 00-99 -----------------------
-function wordMatchCheck() {
-  for (let i = 0; i < riddleArray.length; i++) {
-    for (let j = 0; j < riddleArray[i].length; j++) {
-      cell = document.getElementById("cell" + i + j);
-     // riddleArray[i][j].textContent = cell;
-      cell.innerHTML = riddleArray[i][j];
-      
-      
-      // console.log(riddleArray[i][j]);
-    }; 
-  } 
-  }
-*/
 
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
 
