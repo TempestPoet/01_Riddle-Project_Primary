@@ -72,46 +72,56 @@ function testButton2() {
   var row = Math.floor(Math.random() * 10);
   var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("cell" + row + col);
-  var switchRandomizer = Math.floor(Math.random() * 1) + 1;
-  
-  
-  
+  var switchRandomizer = Math.floor(Math.random() * 6) + 1;
+
   switch (switchRandomizer) {
     // ----- R O W S ------
     case 1:
-      if (row + rndWord.length <= riddleArray.length && testWord(cell.innerHTML, row, col) == true) {
+      if (
+        row + rndWord.length <= riddleArray.length &&
+        testWord(cell, row, col, switchRandomizer) == true
+      ) {
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-         // window.alert(cell.innerHTML + row + col);
+          // window.alert(cell.innerHTML + row + col);
         }
       }
       break;
     // ----- C O L U M N S ------
     case 2:
-      if (col + rndWord.length <= riddleArray.length) {
+      if (
+        col + rndWord.length <= riddleArray.length &&
+        testWord(cell, row, col, switchRandomizer) == true
+      ) {
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row + col++);
           cell.innerHTML = "";
-          cell.innerHTML += rndWord[0 + k];         
+          cell.innerHTML += rndWord[0 + k];
         }
       }
       break;
     // ----- D I A G O N A L S------
     case 3:
-      if (row + rndWord.length <= riddleArray.length && 
-          col + rndWord.length <= riddleArray.length) {
+      if (
+        row + rndWord.length <= riddleArray.length &&
+        col + rndWord.length <= riddleArray.length &&
+        testWord(cell, row, col, switchRandomizer) == true
+      ) {
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col++);
           cell.innerHTML = "";
-          cell.innerHTML += rndWord[0 + k];        
+          cell.innerHTML += rndWord[0 + k];
         }
       }
       break;
     // ------ R O W S - R E V E R S E ---------
     case 4:
-      if (row + rndWord.length <= riddleArray.length) {
+      if (
+        row + rndWord.length <= riddleArray.length &&
+        testWord(cell, row, col, switchRandomizer) == true
+      ) {
         rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col);
@@ -122,7 +132,10 @@ function testButton2() {
       break;
     // ----- C O L U M N S - R E V E R S E------
     case 5:
-      if (col + rndWord.length <= riddleArray.length) {
+      if (
+        col + rndWord.length <= riddleArray.length &&
+        testWord(cell, row, col, switchRandomizer) == true
+      ) {
         rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row + col++);
@@ -133,50 +146,76 @@ function testButton2() {
       break;
     // ----- D I A G O N A L S - R E V E R S E------
     case 6:
-      if (row + rndWord.length <= riddleArray.length && 
-          col + rndWord.length <= riddleArray.length) {
+      if (
+        row + rndWord.length <= riddleArray.length &&
+        col + rndWord.length <= riddleArray.length &&
+        testWord(cell, row, col, switchRandomizer) == true
+      ) {
         rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-        } 
+        }
       }
       break;
-      
+
     //return cell.innerHTML;
   }
-} 
-
+}
 
 /**************************W O R D - M A T C H - C H E C K E R***************** */
-function testWord(bool, row2, col2) {
+function testWord(bool, row2, col2, switchRandomizer2) {
   var cell = bool;
   var row = row2;
   var col = col2;
- 
-  for (let k = 0; k < rndWord.length; k++) {
-  //  window.alert(cell.innerHTML = "cell" + (row2 + k) + col2)
-    if(cell !== "0") {
-      bool = false;
-      
+  var switchRandomizer = switchRandomizer2;
 
-     // window.alert(cell + "is" + bool);
-    } else {    
-     bool = true;
-   //  window.alert(cell + "is" + bool);
-    } 
-  } return bool;
-  // for (let i = 0; i < riddleArray.length; i++) {
-  //   for (let j = 0; j < riddleArray[i].length; j++) {
-  //     document.getElementById("cell" + i + j) = ;
-  //     cell.innerHTML = riddleArray[i][j];
-      
-      
-      // console.log(riddleArray[i][j]);
-    }; 
-  
-  
+  switch (switchRandomizer2) {
+    case (1, 4):
+      for (let k = 0; k < rndWord.length; k++) {
+        cell = "cell" + (row2 + k) + col2;
+        if (document.getElementById(cell).textContent !== "0") {
+          bool = false;
+          return bool;
+        } else {
+          bool = true;
+        }
+      }
+      return bool;
+
+    case (2, 5):
+      for (let k = 0; k < rndWord.length; k++) {
+        cell = "cell" + row2 + (col2 + k);
+        if (document.getElementById(cell).textContent !== "0") {
+          bool = false;
+          return bool;
+        } else {
+          bool = true;
+        }
+      }
+      return bool;
+
+    case (3, 6):
+      for (let k = 0; k < rndWord.length; k++) {
+        cell = "cell" + (row2 + k) + (col2 + k);
+        if (document.getElementById(cell).textContent !== "0") {
+          bool = false;
+          return bool;
+        } else {
+          bool = true;
+        }
+      }
+      return bool;
+  }
+}
+// for (let i = 0; i < riddleArray.length; i++) {
+//   for (let j = 0; j < riddleArray[i].length; j++) {
+//     document.getElementById("cell" + i + j) = ;
+//     cell.innerHTML = riddleArray[i][j];
+
+// console.log(riddleArray[i][j]);
+
 /***********************C R E A T E  - M A P**********************/
 
 /* ----- working cell implement numbers 00-99 -----------------------
@@ -194,17 +233,7 @@ function wordMatchCheck() {
   }
 */
 
-
-
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
-
-
-
-
-
-
-
-
 
 /*
 var i = 0; j = 0;
