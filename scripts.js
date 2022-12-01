@@ -176,6 +176,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + col2;
         if (document.getElementById(cell).textContent !== "0") {
+          
           bool = false;
           return bool;
         } else {
