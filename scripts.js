@@ -72,7 +72,7 @@ function testButton2() {
   var row = Math.floor(Math.random() * 10);
   var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("cell" + row + col);
-  var switchRandomizer = Math.floor(Math.random() * 6) + 1;
+  var switchRandomizer = Math.floor(Math.random() * 2) + 1;
 
   switch (switchRandomizer) {
     // ----- R O W S ------
@@ -87,6 +87,8 @@ function testButton2() {
           cell.innerHTML += rndWord[0 + k];
           // window.alert(cell.innerHTML + row + col);
         }
+      } else {
+        testButton2();
       }
       break;
     // ----- C O L U M N S ------
@@ -100,6 +102,8 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
     // ----- D I A G O N A L S------
@@ -114,6 +118,8 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
     // ------ R O W S - R E V E R S E ---------
@@ -128,6 +134,8 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
     // ----- C O L U M N S - R E V E R S E------
@@ -142,6 +150,8 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
     // ----- D I A G O N A L S - R E V E R S E------
@@ -157,8 +167,13 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
+      default:
+        break;
+      
 
     //return cell.innerHTML;
   }
@@ -172,12 +187,12 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   var switchRandomizer = switchRandomizer2;
 
   switch (switchRandomizer2) {
-    case (1, 4):
+    case (1 || 4):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + col2;
-        if (document.getElementById(cell).textContent !== "0") {
-          
+        if (document.getElementById(cell).textContent !== "0" /* && document.getElementById(cell).textContent !== rndWord[0] */) {
           bool = false;
+         // window.alert(rnd);
           return bool;
         } else {
           bool = true;
@@ -185,10 +200,10 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (2, 5):
+    case (2 || 5):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + row2 + (col2 + k);
-        if (document.getElementById(cell).textContent !== "0") {
+        if (document.getElementById(cell).textContent !== "0" /* && document.getElementById(cell).textContent !== cell.textContent */) {
           bool = false;
           return bool;
         } else {
@@ -197,10 +212,10 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (3, 6):
+    case (3 || 6):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + (col2 + k);
-        if (document.getElementById(cell).textContent !== "0") {
+        if (document.getElementById(cell).textContent !== "0" /* && document.getElementById(cell).textContent !== cell.textContent */) {
           bool = false;
           return bool;
         } else {
