@@ -72,7 +72,7 @@ function testButton2() {
   var row = Math.floor(Math.random() * 10);
   var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("cell" + row + col);
-  var switchRandomizer = Math.floor(Math.random() * 2) + 1;
+  var switchRandomizer = Math.floor(Math.random() * 6) + 1;
 
   switch (switchRandomizer) {
     // ----- R O W S ------
@@ -190,7 +190,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
     case (1 || 4):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + col2;
-        if (document.getElementById(cell).textContent !== "0" /* && document.getElementById(cell).textContent !== rndWord[0] */) {
+        if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k] !== document.getElementById(cell).textContent) {
           bool = false;
          // window.alert(rnd);
           return bool;
@@ -203,7 +203,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
     case (2 || 5):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + row2 + (col2 + k);
-        if (document.getElementById(cell).textContent !== "0" /* && document.getElementById(cell).textContent !== cell.textContent */) {
+        if (document.getElementById(cell).textContent !== "0"  && rndWord[0 + k] !== document.getElementById(cell).textContent) {
           bool = false;
           return bool;
         } else {
@@ -215,7 +215,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
     case (3 || 6):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + (col2 + k);
-        if (document.getElementById(cell).textContent !== "0" /* && document.getElementById(cell).textContent !== cell.textContent */) {
+        if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k] !== document.getElementById(cell).textContent ) {
           bool = false;
           return bool;
         } else {
