@@ -1,0 +1,110 @@
+root {
+    display: inline-flex;
+}
+
+body {
+    text-align:center;
+    background-image: url('/public/img/1920x1056_questionMark_bg.jpg');
+   color: rgb(216, 206, 206); 
+}
+
+p {
+    font-family:monospace;
+}
+
+table {
+    margin: 1rem auto;
+    table-layout: fixed;
+    
+}
+td {
+    width:3rem;
+    height:3rem;
+    border: 1px solid rgb(255, 255, 255);
+    font-size:2.5rem;
+   /* text-align:center; */
+    font-family:arial, helvetica, sans-serif;
+    font-display: block;
+
+}
+
+.btn {
+   /* background: #053d76; */
+    background: #6300a0;
+    color: #f0f7f5;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: .5rem .7rem;
+    border-radius: 1.7rem;
+    transform: scale(1);
+    transition: transform 200ms;
+  }
+  .btn:hover {
+    transform: scale(1.1);
+  }
+#riddleButton, #clearButton {
+    margin: .5rem .5rem;
+}
+#clearButton {
+    background-color: #b20a37;
+}
+
+  .form__group input {
+    border: 3px solid #6300a0;
+    border-radius: 100rem;
+    color: #6300a0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8rem;
+    outline: none;
+    padding: 0.5rem 1.5rem;
+    width: border-box;
+    transition: background-color 500ms;
+    /* &:not(:focus):valid {
+        background-color: $cd-valid;
+        border: 2px solid $cd-valid;
+        color: $cd-txt--invalid;
+    } */
+  }
+  .form__group input:focus {
+    border: 2px solid #6300a0;
+  }
+  .form__group input:not(:focus):invalid {
+    background-color: #b20a37;
+    border: 2px solid #b20a37;
+    color: #fff;
+  }
+#word-input-field {
+  text-transform: uppercase;
+}
+
+.listedItems {
+  padding: 0.3rem .5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #ffffff;
+  
+}
+#ordered-List {
+  display: inline-block;
+  text-align: left;
+  column-count: 2;
+  column-gap: 4rem;
+  
+}
+  .addedWordList {
+    text-align: center;
+
+  }
+
+/* div.container {
+     display: grid;
+     grid-template: repeat(6, 1fr) / repeat(6, 1fr);
+     grid-template-areas: 
+   "cell01 cell02 cell03 cell04 cell05 cell06"
+   "cell07 cell08 cell09 cell10 cell11 cell12"
+   "cell13 cell14 cell15 cell16 cell17 cell18"
+   "cell19 cell20 cell21 cell22 cell23 cell24"
+   "cell25 cell26 cell27 cell28 cell29 cell30"
+   "cell31 cell32 cell33 cell34 cell35 cell36"
+   ; 
+} */
