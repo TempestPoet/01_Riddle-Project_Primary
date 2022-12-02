@@ -2,8 +2,9 @@
 const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
 const wordList = document.querySelector("addedWordList");
-const orderedWordList = document.getElementById("ordered-List");
-var rndWord = "ahoi";
+const rndWord = document.getElementById("ordered-List");
+// var rndWord = "ahoi";
+
 
 // ****************************E V E N T - L I S T E N E R S**********************************************************
 wordSubmitButton.addEventListener("click", () => {

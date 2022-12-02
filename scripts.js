@@ -52,7 +52,7 @@ function drawRiddle() {
 function clearRiddle() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("cell" + i + j).innerHTML = "";
+      document.getElementById("cell" + i + j).innerHTML = "0";
     })
   );
 }

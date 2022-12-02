@@ -5,8 +5,12 @@ root {
 body {
     text-align:center;
     background-image: url('/public/img/1920x1056_questionMark_bg.jpg');
-   color: rgb(216, 206, 206); 
+   color: rgb(255, 255, 255); 
 }
+ tr > td:hover {
+  transform: scale(1.1);
+  background-color: #b6b8b6;
+}  
 
 p {
     font-family:monospace;
@@ -31,7 +35,7 @@ td {
 .btn {
    /* background: #053d76; */
     background: #6300a0;
-    color: #f0f7f5;
+    color: #ffffff;
     font-size: 1rem;
     cursor: pointer;
     padding: .5rem .7rem;
@@ -73,15 +77,13 @@ td {
     border: 2px solid #b20a37;
     color: #fff;
   }
-#word-input-field {
-  text-transform: uppercase;
-}
 
 .listedItems {
   padding: 0.3rem .5rem;
   font-weight: bold;
   font-size: 1.2rem;
   color: #ffffff;
+  text-transform: uppercase;
   
 }
 #ordered-List {
