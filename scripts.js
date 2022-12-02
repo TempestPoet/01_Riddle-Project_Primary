@@ -13,10 +13,25 @@ wordSubmitButton.addEventListener("click", () => {
   if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
   newAddList.textContent = wordInputField.value;
   orderedWordList.appendChild(newAddList);
-  rndWord.push(newAddList.textContent);
-  console.log(rndWord);
+  wordInputField.value = "";
   };
 });
+
+wordInputField.addEventListener("keydown", function (e) {
+  if (e.code === "Enter") {  
+      validate(e);
+  }
+});
+ function validate(e) {
+  let newAddList = document.createElement("li");
+  newAddList.classList.add("listedItems");
+  newAddList.setAttribute("id", "newWordEntry");
+  if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
+  newAddList.textContent = wordInputField.value;
+  orderedWordList.appendChild(newAddList);
+  wordInputField.value = "";
+  };
+};
 
 //*******************************************R I D D L E - A R R A Y****************************************************
 var riddleArray = [
