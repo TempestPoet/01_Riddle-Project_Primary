@@ -58,6 +58,7 @@ function deleteList() {
 };
 //*************************************C L E A R - L E T T E R S******************F U N C T I O N************* */
 function clearRiddle() {
+  rndWord = [];
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
       document.getElementById("cell" + i + j).innerHTML = "";  
@@ -81,7 +82,7 @@ function testButton2() {
   var row = Math.floor(Math.random() * 10);
   var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("cell" + row + col);
-  var switchRandomizer = Math.floor(Math.random() * 6) + 1;
+  var switchRandomizer = Math.floor(Math.random() * 1) + 1;
 
   switch (switchRandomizer) {
     // ----- R O W S ------
@@ -235,7 +236,12 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   }
 }
 
-
+/***********************U S E - A R R A Y - F O R - R N D - W O R D - I N P U T***********************/
+function addAllWords() {
+  rndWord.forEach((rndWord[b], b => testButton2()));
+  //testButton2(rndWord[b]);
+}
+//console.log(word[1])
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
 
 
