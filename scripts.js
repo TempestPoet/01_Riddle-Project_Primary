@@ -250,9 +250,9 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   }
 }
 
-/***********************U S E - A R R A Y - F O R - R N D - W O R D - I N P U T***********************/
+/***********************C R E A T E - R I D D L E***********************/
 function addAllWords() {
-  //  for (let i = wordArray.length; i <= 0 ; i--) {
+  drawRiddle();
   for (let x = wordArray.length - 1; x >= 0; x-- ) {
     rndWord = wordArray[x];
     testButton2();
