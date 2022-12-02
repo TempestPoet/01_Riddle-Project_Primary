@@ -3,9 +3,9 @@ const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
 const wordList = document.querySelector("addedWordList");
 const orderedWordList = document.getElementById("ordered-List");
-var rndWord = "ahoi";
+var rndWords = [];
 
-// ****************************E V E N T - L I S T E N E R S**********************************************************
+// ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
 wordSubmitButton.addEventListener("click", () => {
   let newAddList = document.createElement("li");
   newAddList.classList.add("listedItems");
@@ -13,6 +13,8 @@ wordSubmitButton.addEventListener("click", () => {
   if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
   newAddList.textContent = wordInputField.value;
   orderedWordList.appendChild(newAddList);
+  rndWords.push(newAddList.textContent);
+  console.log(rndWords);
   };
 });
 
