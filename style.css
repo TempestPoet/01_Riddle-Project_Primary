@@ -12,6 +12,7 @@ body {
   background-color: #b6b8b6;
 }  
 
+
 p {
     font-family:monospace;
 }
@@ -19,6 +20,7 @@ p {
 table {
     margin: 1rem auto;
     table-layout: fixed;
+    text-transform: uppercase;
     
 }
 td {
