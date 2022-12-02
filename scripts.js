@@ -48,16 +48,20 @@ function drawRiddle() {
     })
   );
 }
+//*************************************C L E A R - L I S T******************F U N C T I O N************* */
+function deleteList() {
+  while (orderedWordList.length !== 0) {
+  orderedWordList.removeChild(document.getElementById('newWordEntry'));
+  }
+};
 //*************************************C L E A R - L E T T E R S******************F U N C T I O N************* */
-
 function clearRiddle() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("cell" + i + j).innerHTML = "";
-      orderedWordList.removeChild(document.getElementById('newWordEntry'));
+      document.getElementById("cell" + i + j).innerHTML = "";  
     })
   );
-
+  deleteList();
 }
 
 //**************************************R E V E R S E - W O R D S **************** */
