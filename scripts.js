@@ -3,7 +3,7 @@ const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
 const wordList = document.querySelector("addedWordList");
 const orderedWordList = document.getElementById("ordered-List");
-var rndWords = [];
+var rndWord = [];
 
 // ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
 wordSubmitButton.addEventListener("click", () => {
@@ -13,8 +13,8 @@ wordSubmitButton.addEventListener("click", () => {
   if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
   newAddList.textContent = wordInputField.value;
   orderedWordList.appendChild(newAddList);
-  rndWords.push(newAddList.textContent);
-  console.log(rndWords);
+  rndWord.push(newAddList.textContent);
+  console.log(rndWord);
   };
 });
 
