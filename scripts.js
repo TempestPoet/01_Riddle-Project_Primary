@@ -10,8 +10,10 @@ wordSubmitButton.addEventListener("click", () => {
   let newAddList = document.createElement("li");
   newAddList.classList.add("listedItems");
   newAddList.setAttribute("id", "newWordEntry");
+  if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
   newAddList.textContent = wordInputField.value;
   orderedWordList.appendChild(newAddList);
+  };
 });
 
 //*******************************************R I D D L E - A R R A Y****************************************************
@@ -37,7 +39,6 @@ function newRandomLetter() {
   let randomLetter = Alphabet[index];
   return randomLetter;
 }
-console.log(newRandomLetter);
 //*************************************A D D S - L E T T E R S******************F U N C T I O N************* */
 // NEW version to add numbers to riddle  //
 function drawRiddle() {
@@ -52,9 +53,11 @@ function drawRiddle() {
 function clearRiddle() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("cell" + i + j).innerHTML = "0";
+      document.getElementById("cell" + i + j).innerHTML = "";
+      orderedWordList.removeChild(document.getElementById('newWordEntry'));
     })
   );
+
 }
 
 //**************************************R E V E R S E - W O R D S **************** */
