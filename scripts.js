@@ -7,14 +7,7 @@ var rndWord = [];
 
 // ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
 wordSubmitButton.addEventListener("click", () => {
-  let newAddList = document.createElement("li");
-  newAddList.classList.add("listedItems");
-  newAddList.setAttribute("id", "newWordEntry");
-  if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
-  newAddList.textContent = wordInputField.value;
-  orderedWordList.appendChild(newAddList);
-  wordInputField.value = "";
-  };
+  validate();
 });
 
 wordInputField.addEventListener("keydown", function (e) {
