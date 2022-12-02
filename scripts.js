@@ -3,7 +3,8 @@ const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
 const wordList = document.querySelector("addedWordList");
 const orderedWordList = document.getElementById("ordered-List");
-var rndWord = [];
+var rndWord = "";
+var wordArray = [];
 
 // ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
 wordSubmitButton.addEventListener("click", () => {
@@ -16,12 +17,14 @@ wordInputField.addEventListener("keydown", function (e) {
   }
 });
  function validate(e) {
+  if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
   let newAddList = document.createElement("li");
   newAddList.classList.add("listedItems");
   newAddList.setAttribute("id", "newWordEntry");
-  if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
   newAddList.textContent = wordInputField.value;
   orderedWordList.appendChild(newAddList);
+  console.log(wordArray.push(newAddList.textContent));
+  console.log(wordArray);
   wordInputField.value = "";
   };
 };
@@ -60,10 +63,13 @@ function drawRiddle() {
 }
 //*************************************C L E A R - L I S T******************F U N C T I O N************* */
 function deleteList() {
-  while (orderedWordList.length !== 0) {
+  wordArray.length = 0;
+  orderedWordList.replaceChildren();
+}
+ /* while (orderedWordList.length !== 0) {
   orderedWordList.removeChild(document.getElementById('newWordEntry'));
-  }
-};
+  } */
+
 //*************************************C L E A R - L E T T E R S******************F U N C T I O N************* */
 function clearRiddle() {
   rndWord = [];
@@ -90,7 +96,7 @@ function testButton2() {
   var row = Math.floor(Math.random() * 10);
   var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("cell" + row + col);
-  var switchRandomizer = Math.floor(Math.random() * 1) + 1;
+  var switchRandomizer = Math.floor(Math.random() * 6) + 1;
 
   switch (switchRandomizer) {
     // ----- R O W S ------
@@ -246,9 +252,35 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 
 /***********************U S E - A R R A Y - F O R - R N D - W O R D - I N P U T***********************/
 function addAllWords() {
-  rndWord.forEach((rndWord[b], b => testButton2()));
-  //testButton2(rndWord[b]);
+  //  for (let i = wordArray.length; i <= 0 ; i--) {
+  for (let x = wordArray.length - 1; x >= 0; x-- ) {
+    rndWord = wordArray[x];
+    testButton2();
+  }  
+  replaceZero();
 }
+
+/*****************************R E P L A C E - Z E R O S ***********************************************/
+ function replaceZero() {
+  riddleArray.forEach((row, i) =>
+    row.forEach((item, j) => {
+      if (document.getElementById("cell" + i + j).innerHTML === "0") {
+      document.getElementById("cell" + i + j).innerHTML = newRandomLetter();
+      }
+    })
+  ); 
+}
+  //console.log(wordArray.length);
+ // rndWord = wordArray[0];
+ // console.log(wordArray.length);
+  // console.log(rndWord);
+  //   //  rndWord => testButton2();
+  // } 
+
+
+ //rndWord.pop.forEach((rndWord => testButton2()));
+ // testButton2(rndWord[b]);
+//}
 //console.log(word[1])
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
 
