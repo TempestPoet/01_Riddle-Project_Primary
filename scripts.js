@@ -33,7 +33,9 @@ function validate(e) {
     console.log(wordArray.push(newAddList.textContent));
     console.log(wordArray);
     wordInputField.value = "";
-  }
+  } else {
+    wordInputField.value = wordInputField.value.match(new RegExp(/[a-zA-Z]+/));  
+  } 
 }
 
 //*******************************************R I D D L E - A R R A Y****************************************************
@@ -85,6 +87,7 @@ function clearRiddle() {
     })
   );
   deleteList();
+  wordInputField.value = "";
 }
 
 //**************************************R E V E R S E - W O R D S **************** */
