@@ -284,4 +284,8 @@ function addAllWords() {
 //console.log(word[1])
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
 
+/*************************M O U S E - E V E N T S ******************************* */
+
+
+  
 

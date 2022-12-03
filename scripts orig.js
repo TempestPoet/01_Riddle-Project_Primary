@@ -2,18 +2,32 @@
 const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
 const wordList = document.querySelector("addedWordList");
-const rndWord = document.getElementById("ordered-List");
-// var rndWord = "ahoi";
+const orderedWordList = document.getElementById("ordered-List");
+var rndWord = "";
+var wordArray = [];
 
-
-// ****************************E V E N T - L I S T E N E R S**********************************************************
+// ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
 wordSubmitButton.addEventListener("click", () => {
+  validate();
+});
+
+wordInputField.addEventListener("keydown", function (e) {
+  if (e.code === "Enter") {  
+      validate(e);
+  }
+});
+ function validate(e) {
+  if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
   let newAddList = document.createElement("li");
   newAddList.classList.add("listedItems");
   newAddList.setAttribute("id", "newWordEntry");
   newAddList.textContent = wordInputField.value;
   orderedWordList.appendChild(newAddList);
-});
+  console.log(wordArray.push(newAddList.textContent));
+  console.log(wordArray);
+  wordInputField.value = "";
+  };
+};
 
 //*******************************************R I D D L E - A R R A Y****************************************************
 var riddleArray = [
@@ -38,7 +52,6 @@ function newRandomLetter() {
   let randomLetter = Alphabet[index];
   return randomLetter;
 }
-console.log(newRandomLetter);
 //*************************************A D D S - L E T T E R S******************F U N C T I O N************* */
 // NEW version to add numbers to riddle  //
 function drawRiddle() {
@@ -48,14 +61,24 @@ function drawRiddle() {
     })
   );
 }
-//*************************************C L E A R - L E T T E R S******************F U N C T I O N************* */
+//*************************************C L E A R - L I S T******************F U N C T I O N************* */
+function deleteList() {
+  wordArray.length = 0;
+  orderedWordList.replaceChildren();
+}
+ /* while (orderedWordList.length !== 0) {
+  orderedWordList.removeChild(document.getElementById('newWordEntry'));
+  } */
 
+//*************************************C L E A R - L E T T E R S******************F U N C T I O N************* */
 function clearRiddle() {
+  rndWord = [];
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("cell" + i + j).innerHTML = "";
+      document.getElementById("cell" + i + j).innerHTML = "";  
     })
   );
+  deleteList();
 }
 
 //**************************************R E V E R S E - W O R D S **************** */
@@ -88,6 +111,8 @@ function testButton2() {
           cell.innerHTML += rndWord[0 + k];
           // window.alert(cell.innerHTML + row + col);
         }
+      } else {
+        testButton2();
       }
       break;
     // ----- C O L U M N S ------
@@ -101,6 +126,8 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
     // ----- D I A G O N A L S------
@@ -115,6 +142,8 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
     // ------ R O W S - R E V E R S E ---------
@@ -129,6 +158,8 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
     // ----- C O L U M N S - R E V E R S E------
@@ -143,6 +174,8 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
     // ----- D I A G O N A L S - R E V E R S E------
@@ -158,8 +191,13 @@ function testButton2() {
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
+      } else {
+        testButton2();
       }
       break;
+      default:
+        break;
+      
 
     //return cell.innerHTML;
   }
@@ -173,12 +211,12 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   var switchRandomizer = switchRandomizer2;
 
   switch (switchRandomizer2) {
-    case (1, 4):
+    case (1 || 4):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + col2;
-        if (document.getElementById(cell).textContent !== "0") {
-          
+        if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k] !== document.getElementById(cell).textContent) {
           bool = false;
+         // window.alert(rnd);
           return bool;
         } else {
           bool = true;
@@ -186,10 +224,10 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (2, 5):
+    case (2 || 5):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + row2 + (col2 + k);
-        if (document.getElementById(cell).textContent !== "0") {
+        if (document.getElementById(cell).textContent !== "0"  && rndWord[0 + k] !== document.getElementById(cell).textContent) {
           bool = false;
           return bool;
         } else {
@@ -198,10 +236,10 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (3, 6):
+    case (3 || 6):
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + (col2 + k);
-        if (document.getElementById(cell).textContent !== "0") {
+        if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k] !== document.getElementById(cell).textContent ) {
           bool = false;
           return bool;
         } else {
@@ -211,191 +249,43 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       return bool;
   }
 }
-// for (let i = 0; i < riddleArray.length; i++) {
-//   for (let j = 0; j < riddleArray[i].length; j++) {
-//     document.getElementById("cell" + i + j) = ;
-//     cell.innerHTML = riddleArray[i][j];
 
-// console.log(riddleArray[i][j]);
+/***********************C R E A T E - R I D D L E***********************/
+function addAllWords() {
+  drawRiddle();
+  for (let x = wordArray.length - 1; x >= 0; x-- ) {
+    rndWord = wordArray[x];
+    testButton2();
+  }  
+  replaceZero();
+}
 
-/***********************C R E A T E  - M A P**********************/
+/*****************************R E P L A C E - Z E R O S ***********************************************/
+ function replaceZero() {
+  riddleArray.forEach((row, i) =>
+    row.forEach((item, j) => {
+      if (document.getElementById("cell" + i + j).innerHTML === "0") {
+      document.getElementById("cell" + i + j).innerHTML = newRandomLetter();
+      }
+    })
+  ); 
+}
+  //console.log(wordArray.length);
+ // rndWord = wordArray[0];
+ // console.log(wordArray.length);
+  // console.log(rndWord);
+  //   //  rndWord => testButton2();
+  // } 
 
-/* ----- working cell implement numbers 00-99 -----------------------
-function wordMatchCheck() {
-  for (let i = 0; i < riddleArray.length; i++) {
-    for (let j = 0; j < riddleArray[i].length; j++) {
-      cell = document.getElementById("cell" + i + j);
-     // riddleArray[i][j].textContent = cell;
-      cell.innerHTML = riddleArray[i][j];
-      
-      
-      // console.log(riddleArray[i][j]);
-    }; 
-  } 
-  }
-*/
 
+ //rndWord.pop.forEach((rndWord => testButton2()));
+ // testButton2(rndWord[b]);
+//}
+//console.log(word[1])
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
 
-/*
-var i = 0; j = 0;
+/*************************M O U S E - E V E N T S ******************************* */
 
-riddleArray.forEach(function each(item) {
-  if (Array.isArray(item)) {
-    // If is array, continue repeat loop
-    item.forEach(each);
-    i++;
-    j = 0;
-  } else {
-    console.log("[" + i + "][" + j + "] = " + item);
-    j++;
-  }
-  console.log("cell" + i + j);
-}); */
-/*
-var i = 0; j = 0;
 
-riddleArray.forEach(function each(item) {
-  if (Array.isArray(item)) {
-    // If is array, continue repeat loop
-    item.forEach(each);
-    i++;
-    j = 0;
-  } else {
-    console.log("[" + i + "][" + j + "] = cell" + item);    
-    //console.log("cell" + i + j);
-    j++;
-  }
   
-});
-*/
-/*
-function drawRiddle() {
-    for (var row = 0; row < riddleArray.length; row++) {
-        for (var col = 0; col < riddleArray[row].length; col++) {
-            var cell = document.getElementById("cell" + row + col);
-            riddleArray[row][col] = newRandomLetter();
-            cell.innerHTML = riddleArray[row][col];
-    }
 
-}
-}
-*/
-//window.alert(cell.innerHTML + row + col);
-//window.alert(riddleArray.indexOf(cell.innerHTML));
-/*
-function randomIndex() {
-    
-     
-        //return rndRow + rndCol;
-    //window.alert(["cell" + row + col]);
- //  cell.innerHTML = riddleArray[row][col]; 
-    var cell = "cell" + [row] + [col];
-    return cell;  
-
-}
-*/
-/*
-function wordLengthCheck() {
-  let word = "hoi";
-  var row = [Math.floor(Math.random() * 10)];
-  var col = [Math.floor(Math.random() * 10)];
-  let cell = "cell" + [row] + [col];
-  if (word.length + cell[row] > 10) {
-    window.alert(cell[row]);
-  }
-
-  //if (word.length + cell[row].length <= 10) {
-  //  cell[row].replace(cell[row][col], [word] );
-}
-//}
-*/
-//*************************************R E S T E******************F U N K T I O N E N - E T C************* */
-
-/* // old version to add numbers to Riddle  //                                              
-function drawRiddle() {
-    for (var row = 0; row < riddleArray.length; row++) {
-        for (var col = 0; col < riddleArray[row].length; col++) {
-            var cell = document.getElementById("cell" + row + col);
-            riddleArray[row][col] = newRandomLetter();
-            cell.innerHTML = riddleArray[row][col];
-    }
-
-}
-} */
-
-// new index1 = [Math.floor(Math.random() * M)][Math.floor(Math.random() * N)];
-
-/*
-// find a random index of riddleArray and check if wordLength fits
-function randomIndex() {
-    let randomInput = Math.floor(Math.random() * 2)+1;
-    let i = [Math.floor(Math.random() * M)];
-    let j = [Math.floor(Math.random() * N)];
-    let word = "HELLO";
-    let indexLayout = newRiddleArray();
-    //indexLayout[i][j];
-      if (word.length <= (M - i)) {      // Check, if word fits into either length or height of riddle
-        console.log("trueX");
-      } else {
-        console.log("falseX");
-      }
-      if (word.length <= (N - j)) {     
-        console.log("trueY");
-      } else {
-        console.log("falseY");
-      }
-      switch (randomInput) {           // picks a random effect to implement the word, as long as theyre possible
-        case 1:
-         // console.log("blubb");
-          for (let k = 0; k < word.length; k++) {
-          indexLayout[i].splice(indexLayout[i+k], 1, word[0+k]); 
-          }
-          return indexLayout;
-          break;
-        case 2:
-        //  console.log("extraBlubb");
-          for (let k = 0; k < word.length; k++) {
-          indexLayout[j].splice(indexLayout[j+k], 1, word[0+k]);       
-          }
-          return indexLayout;
-          break;
-      } return indexLayout;
-      
-    }
-    
-      
-    //console.log(randomIndex()) */
-
-/* function testButton1() {
-  var row = Math.floor(Math.random() * 10);
-  var col = Math.floor(Math.random() * 10);
-  var cell = document.getElementById("cell" + row + col);
-  
-// ----- R O W S ------
-  if (row + rndWord.length <= riddleArray.length) {
-    for (let k = 0; k < rndWord.length; k++) {
-      const cell = document.getElementById("cell" + row++ + col);
-      cell.innerHTML = "";
-
-      cell.innerHTML += rndWord[0 + k];
-    }
-  // ----- C O L U M N S ------
-  } else if (col + rndWord.length <= riddleArray.length) {
-    for (let k = 0; k < rndWord.length; k++) {
-      const cell = document.getElementById("cell" + row + col++);
-      cell.innerHTML = "";
-
-      cell.innerHTML += rndWord[0 + k];
-    } 
- // ----- D I A G O N A L S------
-  } else if (col + rndWord.length <= riddleArray.length) {
-    for (let k = 0; k < rndWord.length; k++) {
-      const cell = document.getElementById("cell" + row++ + col++);
-      cell.innerHTML = "";
-
-      cell.innerHTML += rndWord[0 + k];
-    }
-  }
-  return cell.innerHTML;
-} */

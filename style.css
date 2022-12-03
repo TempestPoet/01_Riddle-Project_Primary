@@ -10,8 +10,13 @@ body {
  tr > td:hover {
   transform: scale(1.1);
   background-color: #b6b8b6;
+  cursor: pointer;
+  user-select: none;
+ }
+  
+  tr > td:active {
+  background-color: #b20a37;
 }  
-
 
 p {
     font-family:monospace;
@@ -100,15 +105,24 @@ td {
 
   }
 
-/* div.container {
-     display: grid;
-     grid-template: repeat(6, 1fr) / repeat(6, 1fr);
-     grid-template-areas: 
-   "cell01 cell02 cell03 cell04 cell05 cell06"
-   "cell07 cell08 cell09 cell10 cell11 cell12"
-   "cell13 cell14 cell15 cell16 cell17 cell18"
-   "cell19 cell20 cell21 cell22 cell23 cell24"
-   "cell25 cell26 cell27 cell28 cell29 cell30"
-   "cell31 cell32 cell33 cell34 cell35 cell36"
-   ; 
-} */
+/*******************************E X P E R I M E N T A L - M O U S E O V E R**********************************/
+
+td.selected {
+  background-color: orange;
+}
+
+/* indicates that the square is part of a word that has been found */ 
+#puzzle .found {
+  background-color: blue;
+  color: white;
+}
+
+#puzzle .solved {
+  background-color: purple;
+  color: white;
+}
+
+/* indicates that all words have been found */
+#puzzle .complete {
+  background-color: green;
+}
