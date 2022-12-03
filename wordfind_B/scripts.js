@@ -7,21 +7,14 @@ var rndWord = "";
 var wordArray = [];
 
 // ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
-/***event listener for word entry on mouse click ****/
 wordSubmitButton.addEventListener("click", () => {
   validate();
 });
 
-/***prevents spacebar usage and allows valid entry with enter-button ****/
 wordInputField.addEventListener("keydown", function (e) {
-  console.log(e.which);
-  if (e.code === "Enter" && e.which !== 32) {  
+  if (e.code === "Enter") {  
       validate(e);
-  } else if (e.which === 32) {
-    e.preventDefault();
   }
-
-/****checks, if word is a valid entry  *****/
 });
  function validate(e) {
   if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
@@ -60,6 +53,7 @@ function newRandomLetter() {
   return randomLetter;
 }
 //*************************************A D D S - L E T T E R S******************F U N C T I O N************* */
+// NEW version to add numbers to riddle  //
 function drawRiddle() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {

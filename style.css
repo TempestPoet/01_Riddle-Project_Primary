@@ -18,6 +18,8 @@ body {
   background-color: #b20a37;
 }  
 
+
+
 p {
     font-family:monospace;
 }
@@ -105,6 +107,8 @@ td {
 
   }
 
+
+  
 /*******************************E X P E R I M E N T A L - M O U S E O V E R**********************************/
 
 td.selected {
