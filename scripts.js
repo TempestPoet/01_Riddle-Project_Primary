@@ -299,5 +299,53 @@ function replaceZero() {
 //}
 //console.log(word[1])
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
+//var tryAgain = [];
+
+  document.addEventListener('click', () => {
+      cellHighlight = document.querySelector('tr > td:hover');
+  cellHighlight.classList.add('selected');
+  //tryAgain.push(cellHighlight);
+  
+})
+
+
+
 
 /*************************M O U S E - E V E N T S ******************************* */
+
+
+/*******applies class on mouseOver - prototype(diagonals iffy) ********/
+/*
+let isSelecting = false;
+let x = 0;
+let y = 0;
+
+document.addEventListener('mousedown', (e) => {
+  cellHighlight = document.querySelector('tr > td:hover');
+  x = e.offsetX;
+  y = e.offsetY;
+  isSelecting = true;
+  
+})
+
+document.addEventListener('mousemove', (e) => {
+  cellHighlight = document.querySelector('tr > td:hover');
+  if (isSelecting) {
+    cellHighlight.classList.add('selected');
+   // drawLine(context, x, y, e.offsetX, e.offsetY);
+    x = e.offsetX;
+    y = e.offsetY;
+  }
+});
+
+window.addEventListener('mouseup', (e) => {
+  cellHighlight = document.querySelector('tr > td:hover');
+  if (isSelecting) {
+    //cellHighlight.classList.delete('selected');
+    //drawLine(context, x, y, e.offsetX, e.offsetY);
+    x = 0;
+    y = 0;
+    isSelecting = false;
+  }
+});
+*/
