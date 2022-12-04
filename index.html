@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <link href="style.css" rel="stylesheet" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="scripts.js"></script>
 </head>
 
 <body>
@@ -155,13 +156,14 @@
         <div class="form">
             <div class="form__group">
                 <label for="word-input">Choose a word to place into the riddle:</label>
-                <input id="word-input-field" type="text" class="form-control" placeholder="max. 10 letters" pattern="[A-Za-z]{3,10}">
-                <button class="btn" id="word-submit-button" type="button">Submit</button>
+                <input type="text" id="word-input-field"  class="form-control" placeholder="max. 10 letters" pattern="[A-Za-z]{3,10}">
+                <button type="button" class="btn" id="word-submit-button">Submit</button>
             </div>
+        </div>
             
     </section>
-    <script src="Game_orig.js"></script>
-  <!-- <script src="Highlightning.js"></script> -->
+    
+  
 </body>
 
 </html>

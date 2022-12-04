@@ -7,27 +7,36 @@ var rndWord = "";
 var wordArray = [];
 
 // ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
+/***event listener for word entry on mouse click ****/
 wordSubmitButton.addEventListener("click", () => {
   validate();
 });
 
+/***prevents spacebar usage and allows valid entry with enter-button ****/
 wordInputField.addEventListener("keydown", function (e) {
-  if (e.code === "Enter") {  
-      validate(e);
+  console.log(e.which);
+  if (e.code === "Enter" && e.which !== 32) {
+    validate(e);
+  } else if (e.which === 32) {
+    e.preventDefault();
   }
+
+  /****checks, if word is a valid entry, blocks everything except small/capital letters  *****/
 });
- function validate(e) {
-  if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
-  let newAddList = document.createElement("li");
-  newAddList.classList.add("listedItems");
-  newAddList.setAttribute("id", "newWordEntry");
-  newAddList.textContent = wordInputField.value;
-  orderedWordList.appendChild(newAddList);
-  console.log(wordArray.push(newAddList.textContent));
-  console.log(wordArray);
-  wordInputField.value = "";
-  };
-};
+function validate(e) {
+  if (wordInputField.value.length > 2 && wordInputField.value.length < 11 &&  /[^a-zA-Z]+/g.test(wordInputField.value) === false) {
+    let newAddList = document.createElement("li");
+    newAddList.classList.add("listedItems");
+    newAddList.setAttribute("id", "newWordEntry");
+    newAddList.textContent = wordInputField.value;
+    orderedWordList.appendChild(newAddList);
+    console.log(wordArray.push(newAddList.textContent));
+    console.log(wordArray);
+    wordInputField.value = "";
+  } else {
+    wordInputField.value = wordInputField.value.match(new RegExp(/[a-zA-Z]+/));  
+  } 
+}
 
 //*******************************************R I D D L E - A R R A Y****************************************************
 var riddleArray = [
@@ -53,7 +62,6 @@ function newRandomLetter() {
   return randomLetter;
 }
 //*************************************A D D S - L E T T E R S******************F U N C T I O N************* */
-// NEW version to add numbers to riddle  //
 function drawRiddle() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
@@ -66,7 +74,7 @@ function deleteList() {
   wordArray.length = 0;
   orderedWordList.replaceChildren();
 }
- /* while (orderedWordList.length !== 0) {
+/* while (orderedWordList.length !== 0) {
   orderedWordList.removeChild(document.getElementById('newWordEntry'));
   } */
 
@@ -75,10 +83,11 @@ function clearRiddle() {
   rndWord = [];
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("cell" + i + j).innerHTML = "";  
+      document.getElementById("cell" + i + j).innerHTML = "";
     })
   );
   deleteList();
+  wordInputField.value = "";
 }
 
 //**************************************R E V E R S E - W O R D S **************** */
@@ -195,9 +204,8 @@ function testButton2() {
         testButton2();
       }
       break;
-      default:
-        break;
-      
+    default:
+      break;
 
     //return cell.innerHTML;
   }
@@ -211,12 +219,15 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   var switchRandomizer = switchRandomizer2;
 
   switch (switchRandomizer2) {
-    case (1 || 4):
+    case 1 || 4:
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + col2;
-        if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k] !== document.getElementById(cell).textContent) {
+        if (
+          document.getElementById(cell).textContent !== "0" &&
+          rndWord[0 + k] !== document.getElementById(cell).textContent
+        ) {
           bool = false;
-         // window.alert(rnd);
+          // window.alert(rnd);
           return bool;
         } else {
           bool = true;
@@ -224,10 +235,13 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (2 || 5):
+    case 2 || 5:
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + row2 + (col2 + k);
-        if (document.getElementById(cell).textContent !== "0"  && rndWord[0 + k] !== document.getElementById(cell).textContent) {
+        if (
+          document.getElementById(cell).textContent !== "0" &&
+          rndWord[0 + k] !== document.getElementById(cell).textContent
+        ) {
           bool = false;
           return bool;
         } else {
@@ -236,10 +250,13 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (3 || 6):
+    case 3 || 6:
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + (col2 + k);
-        if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k] !== document.getElementById(cell).textContent ) {
+        if (
+          document.getElementById(cell).textContent !== "0" &&
+          rndWord[0 + k] !== document.getElementById(cell).textContent
+        ) {
           bool = false;
           return bool;
         } else {
@@ -253,39 +270,82 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 /***********************C R E A T E - R I D D L E***********************/
 function addAllWords() {
   drawRiddle();
-  for (let x = wordArray.length - 1; x >= 0; x-- ) {
+  for (let x = wordArray.length - 1; x >= 0; x--) {
     rndWord = wordArray[x];
     testButton2();
-  }  
+  }
   replaceZero();
 }
 
 /*****************************R E P L A C E - Z E R O S ***********************************************/
- function replaceZero() {
+function replaceZero() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
       if (document.getElementById("cell" + i + j).innerHTML === "0") {
-      document.getElementById("cell" + i + j).innerHTML = newRandomLetter();
+        document.getElementById("cell" + i + j).innerHTML = newRandomLetter();
       }
     })
-  ); 
+  );
 }
-  //console.log(wordArray.length);
- // rndWord = wordArray[0];
- // console.log(wordArray.length);
-  // console.log(rndWord);
-  //   //  rndWord => testButton2();
-  // } 
+//console.log(wordArray.length);
+// rndWord = wordArray[0];
+// console.log(wordArray.length);
+// console.log(rndWord);
+//   //  rndWord => testButton2();
+// }
 
-
- //rndWord.pop.forEach((rndWord => testButton2()));
- // testButton2(rndWord[b]);
+//rndWord.pop.forEach((rndWord => testButton2()));
+// testButton2(rndWord[b]);
 //}
 //console.log(word[1])
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
+//var tryAgain = [];
+
+  document.addEventListener('click', () => {
+      cellHighlight = document.querySelector('tr > td:hover');
+  cellHighlight.classList.add('selected');
+  //tryAgain.push(cellHighlight);
+  
+})
+
+
+
 
 /*************************M O U S E - E V E N T S ******************************* */
 
 
-  
+/*******applies class on mouseOver - prototype(diagonals iffy) ********/
+/*
+let isSelecting = false;
+let x = 0;
+let y = 0;
 
+document.addEventListener('mousedown', (e) => {
+  cellHighlight = document.querySelector('tr > td:hover');
+  x = e.offsetX;
+  y = e.offsetY;
+  isSelecting = true;
+  
+})
+
+document.addEventListener('mousemove', (e) => {
+  cellHighlight = document.querySelector('tr > td:hover');
+  if (isSelecting) {
+    cellHighlight.classList.add('selected');
+   // drawLine(context, x, y, e.offsetX, e.offsetY);
+    x = e.offsetX;
+    y = e.offsetY;
+  }
+});
+
+window.addEventListener('mouseup', (e) => {
+  cellHighlight = document.querySelector('tr > td:hover');
+  if (isSelecting) {
+    //cellHighlight.classList.delete('selected');
+    //drawLine(context, x, y, e.offsetX, e.offsetY);
+    x = 0;
+    y = 0;
+    isSelecting = false;
+  }
+});
+*/

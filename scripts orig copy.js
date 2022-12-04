@@ -1,3 +1,4 @@
+// import $ from "jquery";
 //********************************************G L O B A L - C O N S T A N T S*************************************** */
 const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
@@ -7,36 +8,27 @@ var rndWord = "";
 var wordArray = [];
 
 // ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
-/***event listener for word entry on mouse click ****/
 wordSubmitButton.addEventListener("click", () => {
   validate();
 });
 
-/***prevents spacebar usage and allows valid entry with enter-button ****/
 wordInputField.addEventListener("keydown", function (e) {
-  console.log(e.which);
-  if (e.code === "Enter" && e.which !== 32) {
-    validate(e);
-  } else if (e.which === 32) {
-    e.preventDefault();
+  if (e.code === "Enter") {  
+      validate(e);
   }
-
-  /****checks, if word is a valid entry, blocks everything except small/capital letters  *****/
 });
-function validate(e) {
-  if (wordInputField.value.length > 2 && wordInputField.value.length < 11 &&  /[^a-zA-Z]+/g.test(wordInputField.value) === false) {
-    let newAddList = document.createElement("li");
-    newAddList.classList.add("listedItems");
-    newAddList.setAttribute("id", "newWordEntry");
-    newAddList.textContent = wordInputField.value;
-    orderedWordList.appendChild(newAddList);
-    console.log(wordArray.push(newAddList.textContent));
-    console.log(wordArray);
-    wordInputField.value = "";
-  } else {
-    wordInputField.value = wordInputField.value.match(new RegExp(/[a-zA-Z]+/));  
-  } 
-}
+ function validate(e) {
+  if (wordInputField.value.length > 2 && wordInputField.value.length < 11) {
+  let newAddList = document.createElement("li");
+  newAddList.classList.add("listedItems");
+  newAddList.setAttribute("id", "newWordEntry");
+  newAddList.textContent = wordInputField.value;
+  orderedWordList.appendChild(newAddList);
+  console.log(wordArray.push(newAddList.textContent));
+  console.log(wordArray);
+  wordInputField.value = "";
+  };
+};
 
 //*******************************************R I D D L E - A R R A Y****************************************************
 var riddleArray = [
@@ -88,7 +80,6 @@ function clearRiddle() {
     })
   );
   deleteList();
-  wordInputField.value = "";
 }
 
 //**************************************R E V E R S E - W O R D S **************** */
@@ -296,11 +287,6 @@ function addAllWords() {
 
 /*************************M O U S E - E V E N T S ******************************* */
 
-/*  document.addEventListener('click', () => {
-      cellHighlight = document.querySelector('tr > td:hover');
-  cellHighlight.classList.add('selected');
-  //tryAgain.push(cellHighlight); 
-})
-*/
+
   
 
