@@ -280,7 +280,10 @@ function addAllWords() {
     })
   ); 
 }
-  //console.log(wordArray.length);
+ 
+
+
+//console.log(wordArray.length);
  // rndWord = wordArray[0];
  // console.log(wordArray.length);
   // console.log(rndWord);
@@ -296,11 +299,29 @@ function addAllWords() {
 
 /*************************M O U S E - E V E N T S ******************************* */
 
+/* var mouseDown = 0;
+document.body.onmousedown = function() { 
+  ++mouseDown;
+}
+document.body.onmouseup = function() {
+  --mouseDown;
+}
+
+
+$(document).ready(function(){
+$(this).mousedown(function(){
+$("tr > td:active").addClass("selected");
+});
+$(this).mouseup(function(){
+$("tr > td:hover").removeClass("selected");
+})
+}); */
 /*  document.addEventListener('click', () => {
       cellHighlight = document.querySelector('tr > td:hover');
   cellHighlight.classList.add('selected');
   //tryAgain.push(cellHighlight); 
 })
 */
-  
-
+/* if(mouseDown){
+  // crikey! isn't she a beauty?
+} */
