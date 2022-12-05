@@ -281,6 +281,34 @@ function addAllWords() {
   ); 
 }
  
+document.addEventListener('mouseover', () => {
+  if (mouseDown > 0){
+  $('tr > td:hover').css('background-color', 'green');} 
+})
+
+document.addEventListener('mouseover', () => {
+  if (mouseDown == 0){
+  $('tr > td:hover').css('background-color', 'transparent');} 
+})
+
+let mouseDown = 0;
+window.onmousedown = () => {
+  ++mouseDown;
+  if (mouseDown) {
+   //console.log('mouse button down')
+  }
+}
+window.onmouseup = () => {
+  --mouseDown;
+  if (mouseDown) {
+   // console.log('mouse button down')
+  }
+}
+
+/* document.addEventListener('mouseup', () => {
+ $('tr > td:hover').css('background-color', '');
+  }) */
+  
 
 
 //console.log(wordArray.length);
