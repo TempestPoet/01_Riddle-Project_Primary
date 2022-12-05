@@ -322,14 +322,30 @@ document.onmouseup = () => {
  */
 
 /*************************M O U S E - E V E N T S ******************************* */
+/** little id tracker for my cells ****/
+var letterArray = []
 
-/**********Working version of colorChanger on mouseDown event *********************/
-/*
-$('td').mouseover(function() {
-  console.log(this.id);
+$('td').on('click', function() {
+  console.log(letterArray.push([this.id, this.textContent]));
+  console.log(letterArray);
 });
 
+/*+++++TO DO's+++
+- get cell coords on event
+- add a wordbuildig array on screen MAYBE
+- grey out words if they are found 
+- mark words, in case they did not enter the riddle
+- have the color events react correctly (as in remove their css properties)
+- add a self-complete function?
+- have words enter counter-diagonal
 
+*/
+/**********Working version of colorChanger on mouseDown event *********************/
+
+
+
+
+/*
 document.addEventListener('mouseover', () => {
   if (mouseDown > 0){
   $('tr > td:hover').css('background-color', 'green');} 
