@@ -112,21 +112,6 @@ td {
 /*******************************E X P E R I M E N T A L - M O U S E O V E R**********************************/
 
 td.selected {
-  background-color: orange;
+  background-color: rgb(255, 227, 176);
 }
 
-/* indicates that the square is part of a word that has been found */ 
-#puzzle .found {
-  background-color: blue;
-  color: white;
-}
-
-#puzzle .solved {
-  background-color: purple;
-  color: white;
-}
-
-/* indicates that all words have been found */
-#puzzle .complete {
-  background-color: green;
-}

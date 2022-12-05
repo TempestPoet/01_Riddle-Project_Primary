@@ -63,7 +63,7 @@ function newRandomLetter() {
 }
 //*************************************A D D S - L E T T E R S******************F U N C T I O N************* */
 // NEW version to add numbers to riddle  //
-function drawRiddle() {
+function addLetters() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
       document.getElementById("cell" + i + j).innerHTML = "0"; //newRandomLetter();
@@ -261,8 +261,8 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 }
 
 /***********************C R E A T E - R I D D L E***********************/
-function addAllWords() {
-  drawRiddle();
+function drawRiddle() {
+  addLetters();
   for (let x = wordArray.length - 1; x >= 0; x-- ) {
     rndWord = wordArray[x];
     testButton2();
@@ -284,39 +284,10 @@ function addAllWords() {
 
 
 
-$('td').mouseover(function() {
-  console.log(this.id);
-});
 
 
-document.addEventListener('mouseover', () => {
-  if (mouseDown > 0){
-  $('tr > td:hover').css('background-color', 'green');} 
-})
 
-document.addEventListener('mouseover', () => {
-  if (mouseDown == 0){
-  $('tr > td:hover').css('background-color', 'transparent');
-  } 
-})
 
-let mouseDown = 0;
-document.onmousedown = () => {
-  ++mouseDown;
-  if (mouseDown) {
-   //console.log('mouse button down')
-  }
-}
-document.onmouseup = () => {
-  --mouseDown;
-  if (mouseDown) {
-   // console.log('mouse button down')
-  }
-}
-
-/* document.addEventListener('mouseup', () => {
- $('tr > td:hover').css('background-color', '');
-  }) */
   
  
 //console.log(wordArray.length);
@@ -333,31 +304,40 @@ document.onmouseup = () => {
 //console.log(word[1])
 /*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
 
+/******** allows mousedown to react to entire length of mousedown, not just entry *** */
+
+/* 
+let mouseDown = 0;
+document.onmousedown = () => {
+  ++mouseDown;
+  if (mouseDown) {
+  }
+}
+document.onmouseup = () => {
+  --mouseDown;
+  if (mouseDown) {
+  }
+}
+
+ */
+
 /*************************M O U S E - E V E N T S ******************************* */
 
-/* var mouseDown = 0;
-document.body.onmousedown = function() { 
-  ++mouseDown;
-}
-document.body.onmouseup = function() {
-  --mouseDown;
-}
-
-
-$(document).ready(function(){
-$(this).mousedown(function(){
-$("tr > td:active").addClass("selected");
+/**********Working version of colorChanger on mouseDown event *********************/
+/*
+$('td').mouseover(function() {
+  console.log(this.id);
 });
-$(this).mouseup(function(){
-$("tr > td:hover").removeClass("selected");
+
+
+document.addEventListener('mouseover', () => {
+  if (mouseDown > 0){
+  $('tr > td:hover').css('background-color', 'green');} 
 })
-}); */
-/*  document.addEventListener('click', () => {
-      cellHighlight = document.querySelector('tr > td:hover');
-  cellHighlight.classList.add('selected');
-  //tryAgain.push(cellHighlight); 
+
+document.addEventListener('mouseover', () => {
+  if (mouseDown == 0){
+  $('tr > td:hover').css('background-color', '');
+  } 
 })
 */
-/* if(mouseDown){
-  // crikey! isn't she a beauty?
-} */
