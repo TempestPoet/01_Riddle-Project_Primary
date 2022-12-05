@@ -280,7 +280,15 @@ function addAllWords() {
     })
   ); 
 }
- 
+
+
+
+
+$('td').mouseover(function() {
+  console.log(this.id);
+});
+
+
 document.addEventListener('mouseover', () => {
   if (mouseDown > 0){
   $('tr > td:hover').css('background-color', 'green');} 
@@ -288,17 +296,18 @@ document.addEventListener('mouseover', () => {
 
 document.addEventListener('mouseover', () => {
   if (mouseDown == 0){
-  $('tr > td:hover').css('background-color', 'transparent');} 
+  $('tr > td:hover').css('background-color', 'transparent');
+  } 
 })
 
 let mouseDown = 0;
-window.onmousedown = () => {
+document.onmousedown = () => {
   ++mouseDown;
   if (mouseDown) {
    //console.log('mouse button down')
   }
 }
-window.onmouseup = () => {
+document.onmouseup = () => {
   --mouseDown;
   if (mouseDown) {
    // console.log('mouse button down')
@@ -309,15 +318,14 @@ window.onmouseup = () => {
  $('tr > td:hover').css('background-color', '');
   }) */
   
-
-
+ 
 //console.log(wordArray.length);
  // rndWord = wordArray[0];
  // console.log(wordArray.length);
   // console.log(rndWord);
   //   //  rndWord => testButton2();
   // } 
-
+//console.log($('tr > td:hover').contents().find('id').textContent)
 
  //rndWord.pop.forEach((rndWord => testButton2()));
  // testButton2(rndWord[b]);
