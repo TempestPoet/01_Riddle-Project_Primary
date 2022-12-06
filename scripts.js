@@ -3,8 +3,9 @@ const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
 const wordList = document.querySelector("addedWordList");
 const orderedWordList = document.getElementById("ordered-List");
-var rndWord = "";
+//var rndWord = "";
 var wordArray = [];
+
 
 // ****************************A D D - N E W - W O R D - T O - L I S T**********************************************************
 /***event listener for word entry on mouse click ****/
@@ -24,15 +25,16 @@ wordInputField.addEventListener("keydown", function (e) {
   /****checks, if word is a valid entry, blocks everything except small/capital letters  *****/
 });
 function validate(e) {
-  if (wordInputField.value.length > 2 && wordInputField.value.length < 11 &&  /[^a-zA-Z]+/g.test(wordInputField.value) === false) {
+  if (wordInputField.value.length > 2 && wordInputField.value.length < 11 &&  /[^a-zA-Z]+/g.test(wordInputField.value) === false) {  
     let newAddList = document.createElement("li");
     newAddList.classList.add("listedItems");
     newAddList.setAttribute("id", "newWordEntry");
     newAddList.textContent = wordInputField.value;
+    newAddList.nodeValue.toUpperCase();
     orderedWordList.appendChild(newAddList);
     console.log(wordArray.push(newAddList.textContent));
     console.log(wordArray);
-    wordInputField.value = "";
+  //  wordInputField.value = "";
   } else {
     wordInputField.value = wordInputField.value.match(new RegExp(/[a-zA-Z]+/));
   }
@@ -69,6 +71,7 @@ function addLetters() {
       document.getElementById("cell" + i + j).innerHTML = "0"; //newRandomLetter();
     })
   );
+  document.getElementById("cell75").innerHTML = "E"
 }
 //*************************************C L E A R - L I S T******************F U N C T I O N************* */
 function deleteList() {
@@ -93,27 +96,32 @@ function clearRiddle() {
 
 //**************************************R E V E R S E - W O R D S **************** */
 function reverseString(rndWord) {
-  let reversedWord = "";
+  let rndWordRev = "";
   for (let i = rndWord.length - 1; i >= 0; i--) {
-    reversedWord += rndWord[i];
+    rndWordRev += rndWord[i];
   }
-  return reversedWord;
+  return rndWordRev;
 }
 
 //*************************************R A N D O M - W O R D - I N P U T******************F U N C T I O N
 
 function testButton2() {
-  var row = Math.floor(Math.random() * 10);
-  var col = Math.floor(Math.random() * 10);
+  var row = 5 //Math.floor(Math.random() * 10);
+  var col = 5 //Math.floor(Math.random() * 10);
   var cell = document.getElementById("cell" + row + col);
-  var switchRandomizer = Math.floor(Math.random() * 8) + 1;
+  var switchRandomizer = 1 //Math.floor(Math.random() * 8) + 1;
+  //console.log(row + " " + " "+  col + " " + " " +  cell);
+  
+  if (switchRandomizer > 4) {
+    rndWord = reverseString(rndWord);
+  } 
 
   switch (switchRandomizer) {
     // ----- R O W S ------
     case 1:
       if (
-        row + rndWord.length <= riddleArray.length &&
-        testWord(cell, row, col, switchRandomizer) == true
+        (row + rndWord.length <= riddleArray.length) && 
+        (testWord(cell, row, col, switchRandomizer) === true)
       ) {
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col);
@@ -122,7 +130,7 @@ function testButton2() {
           // window.alert(cell.innerHTML + row + col);
         }
       } else {
-        testButton2();
+     //   testButton2();
       }
       break;
     // ----- C O L U M N S ------
@@ -140,7 +148,8 @@ function testButton2() {
         testButton2();
       }
       break;
-    // ----- D I A G O N A L - TopLeft to BottomRight------
+   
+      // ----- D I A G O N A L - TopLeft to BottomRight------
     case 3:
       if (
         row + rndWord.length <= riddleArray.length &&
@@ -175,18 +184,19 @@ function testButton2() {
       break;
     // ------ R O W S - R E V E R S E ---------
     case 5:
+      
       if (
-        row + rndWord.length <= riddleArray.length &&
-        testWord(cell, row, col, switchRandomizer) == true
+        (row + rndWord.length <= riddleArray.length) &&
+        (testWord(cell, row, col, switchRandomizer) == true)
       ) {
-        rndWord = reverseString(rndWord);
+        //rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
       } else {
-        testButton2();
+     // testButton2();
       }
       break;
     // ----- C O L U M N S - R E V E R S E------
@@ -195,7 +205,7 @@ function testButton2() {
         col + rndWord.length <= riddleArray.length &&
         testWord(cell, row, col, switchRandomizer) == true
       ) {
-        rndWord = reverseString(rndWord);
+      //  rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row + col++);
           cell.innerHTML = "";
@@ -210,9 +220,9 @@ function testButton2() {
       if (
         row + rndWord.length <= riddleArray.length &&
         col + rndWord.length <= riddleArray.length &&
-        testWord(cell, row, col, switchRandomizer) == true
+       testWord(cell, row, col, switchRandomizer) == true
       ) {
-        rndWord = reverseString(rndWord);
+      //  rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col++);
           cell.innerHTML = "";
@@ -225,12 +235,12 @@ function testButton2() {
     // ----- D I A G O N A L - R E V E R S E TopRight to BottomLeft------
     case 8:
       if (
-        //rndWord.length <= row && rndWord.length >= col &&
+        rndWord.length <= row && rndWord.length >= col &&
         row + rndWord.length <= riddleArray.length &&
         col - rndWord.length >= 0 &&
-        testWord(cell, row, col, switchRandomizer) == true
+       testWord(cell, row, col, switchRandomizer) == true
       ) {
-        rndWord = reverseString(rndWord);
+     //   rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
           const cell = document.getElementById("cell" + row++ + col--);
           cell.innerHTML = "";
@@ -256,11 +266,15 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   var col = col2;
   var switchRandomizer = switchRandomizer2;
 
+  console.log(rndWord + " test2");
+ // console.log(bool, row2, col2, switchRandomizer2)
+  // console.log(cell, row, col, switchRandomizer)
   switch (switchRandomizer2) {
-    case (1 || 5):
+    case 1: case 5:
+      console.log("dir5")
       for (let k = 0; k < rndWord.length; k++) {
-        cell = "cell" + (row2 + k) + col2;
-        if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k] !== document.getElementById(cell).textContent) {
+        cell = "cell" + (row + k) + col;
+        if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k]  !== document.getElementById(cell).textContent) {
           bool = false;
           // window.alert(rnd);
           return bool;
@@ -270,7 +284,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (2 || 6):
+    case 2: case 6:
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + row2 + (col2 + k);
         if (document.getElementById(cell).textContent !== "0"  && rndWord[0 + k] !== document.getElementById(cell).textContent) {
@@ -282,7 +296,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (3 || 7):
+    case 3: case 7:
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + (col2 + k);
         if (
@@ -297,7 +311,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
       }
       return bool;
 
-    case (4 || 8):
+    case 4: case 8:
       for (let k = 0; k < rndWord.length; k++) {
         cell = "cell" + (row2 + k) + (col2 - k);
         if (
