@@ -67,7 +67,7 @@ function newRandomLetter() {
 function addLetters() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("cell" + i + j).innerHTML = "0"; //newRandomLetter();
+      document.getElementById("" + i + j).innerHTML = "0"; //newRandomLetter();
     })
   );
  // document.getElementById("cell75").innerHTML = "E"
@@ -86,7 +86,7 @@ function clearRiddle() {
   rndWord = [];
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("cell" + i + j).innerHTML = "";
+      document.getElementById("" + i + j).innerHTML = "";
     })
   );
   deleteList();
@@ -107,7 +107,7 @@ function reverseString(rndWord) {
 function testButton2() {
   var row = Math.floor(Math.random() * 10);
   var col = Math.floor(Math.random() * 10);
-  var cell = document.getElementById("cell" + row + col);
+  var cell = document.getElementById("" + row + col);
   var switchRandomizer = Math.floor(Math.random() * 8) + 1;
   //console.log(row + " " + " "+  col + " " + " " +  cell);
   
@@ -123,7 +123,7 @@ function testButton2() {
         (testWord(cell, row, col, switchRandomizer) === true)
       ) {
         for (let k = 0; k < rndWord.length; k++) {
-          const cell = document.getElementById("cell" + row++ + col);
+          const cell = document.getElementById("" + row++ + col);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
           // window.alert(cell.innerHTML + row + col);
@@ -139,7 +139,7 @@ function testButton2() {
         testWord(cell, row, col, switchRandomizer) == true
       ) {
         for (let k = 0; k < rndWord.length; k++) {
-          const cell = document.getElementById("cell" + row + col++);
+          const cell = document.getElementById("" + row + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
@@ -156,7 +156,7 @@ function testButton2() {
         testWord(cell, row, col, switchRandomizer) == true
       ) {
         for (let k = 0; k < rndWord.length; k++) {
-          const cell = document.getElementById("cell" + row++ + col++);
+          const cell = document.getElementById("" + row++ + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
@@ -173,7 +173,7 @@ function testButton2() {
         testWord(cell, row, col, switchRandomizer) == true
       ) {
         for (let k = 0; k < rndWord.length; k++) {
-          const cell = document.getElementById("cell" + row++ + col--);
+          const cell = document.getElementById("" + row++ + col--);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
@@ -190,7 +190,7 @@ function testButton2() {
       ) {
         //rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
-          const cell = document.getElementById("cell" + row++ + col);
+          const cell = document.getElementById("" + row++ + col);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
@@ -206,7 +206,7 @@ function testButton2() {
       ) {
       //  rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
-          const cell = document.getElementById("cell" + row + col++);
+          const cell = document.getElementById("" + row + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
@@ -223,7 +223,7 @@ function testButton2() {
       ) {
       //  rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
-          const cell = document.getElementById("cell" + row++ + col++);
+          const cell = document.getElementById("" + row++ + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
@@ -241,7 +241,7 @@ function testButton2() {
       ) {
      //   rndWord = reverseString(rndWord);
         for (let k = 0; k < rndWord.length; k++) {
-          const cell = document.getElementById("cell" + row++ + col--);
+          const cell = document.getElementById("" + row++ + col--);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
         }
@@ -272,7 +272,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
     case 1: case 5:
       console.log("dir5")
       for (let k = 0; k < rndWord.length; k++) {
-        cell = "cell" + (row + k) + col;
+        cell = "" + (row + k) + col;
         if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k]  !== document.getElementById(cell).textContent) {
           bool = false;
           // window.alert(rnd);
@@ -285,7 +285,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 
     case 2: case 6:
       for (let k = 0; k < rndWord.length; k++) {
-        cell = "cell" + row + (col + k);
+        cell = "" + row + (col + k);
         if (document.getElementById(cell).textContent !== "0"  && rndWord[0 + k] !== document.getElementById(cell).textContent) {
           bool = false;
           return bool;
@@ -297,7 +297,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 
     case 3: case 7:
       for (let k = 0; k < rndWord.length; k++) {
-        cell = "cell" + (row + k) + (col + k);
+        cell = "" + (row + k) + (col + k);
         if (
           document.getElementById(cell).textContent !== "0" &&
           rndWord[0 + k] !== document.getElementById(cell).textContent
@@ -312,7 +312,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 
     case 4: case 8:
       for (let k = 0; k < rndWord.length; k++) {
-        cell = "cell" + (row + k) + (col - k);
+        cell = "" + (row + k) + (col - k);
         if (
           document.getElementById(cell).textContent !== "0" &&
           rndWord[0 + k] !== document.getElementById(cell).textContent
@@ -342,8 +342,8 @@ function drawRiddle() {
 function replaceZero() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      if (document.getElementById("cell" + i + j).innerHTML === "0") {
-      document.getElementById("cell" + i + j).innerHTML = 0 //newRandomLetter();
+      if (document.getElementById("" + i + j).innerHTML === "0") {
+      document.getElementById("" + i + j).innerHTML = 0 //newRandomLetter();
       }
     })
   );
