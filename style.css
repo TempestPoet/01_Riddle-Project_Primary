@@ -105,14 +105,15 @@ td {
 }
   .addedWordList {
     text-align: center;
-
+   /* color: #2696b8; */
   }
+
 
 
   
 /*******************************E X P E R I M E N T A L - M O U S E O V E R**********************************/
 
 td.selected {
-  background-color: rgb(255, 227, 176);
+  background-color: #8a8a8a;
 }
 
