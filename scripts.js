@@ -30,7 +30,6 @@ function validate(e) {
     newAddList.classList.add("listedItems");
     newAddList.setAttribute("id", "newWordEntry");
     newAddList.textContent = wordInputField.value;
-    newAddList.nodeValue.toUpperCase();
     orderedWordList.appendChild(newAddList);
     console.log(wordArray.push(newAddList.textContent));
     console.log(wordArray);
@@ -55,7 +54,7 @@ var riddleArray = [
 ];
 
 //*************************************R A N D O M - L E T T E R******************F U N C T I O N************* */
-const Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const Alphabet = "abcdefghijklmnopqrstuvwxyz"; //"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 function newRandomLetter() {
   let z = Math.random() * Alphabet.length;
@@ -106,10 +105,10 @@ function reverseString(rndWord) {
 //*************************************R A N D O M - W O R D - I N P U T******************F U N C T I O N
 
 function testButton2() {
-  var row = 5 //Math.floor(Math.random() * 10);
-  var col = 5 //Math.floor(Math.random() * 10);
+  var row = Math.floor(Math.random() * 10);
+  var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("cell" + row + col);
-  var switchRandomizer = 1 //Math.floor(Math.random() * 8) + 1;
+  var switchRandomizer = Math.floor(Math.random() * 8) + 1;
   //console.log(row + " " + " "+  col + " " + " " +  cell);
   
   if (switchRandomizer > 4) {
@@ -130,7 +129,7 @@ function testButton2() {
           // window.alert(cell.innerHTML + row + col);
         }
       } else {
-     //   testButton2();
+       testButton2();
       }
       break;
     // ----- C O L U M N S ------
@@ -196,7 +195,7 @@ function testButton2() {
           cell.innerHTML += rndWord[0 + k];
         }
       } else {
-     // testButton2();
+       testButton2();
       }
       break;
     // ----- C O L U M N S - R E V E R S E------
@@ -286,7 +285,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 
     case 2: case 6:
       for (let k = 0; k < rndWord.length; k++) {
-        cell = "cell" + row2 + (col2 + k);
+        cell = "cell" + row + (col + k);
         if (document.getElementById(cell).textContent !== "0"  && rndWord[0 + k] !== document.getElementById(cell).textContent) {
           bool = false;
           return bool;
@@ -298,7 +297,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 
     case 3: case 7:
       for (let k = 0; k < rndWord.length; k++) {
-        cell = "cell" + (row2 + k) + (col2 + k);
+        cell = "cell" + (row + k) + (col + k);
         if (
           document.getElementById(cell).textContent !== "0" &&
           rndWord[0 + k] !== document.getElementById(cell).textContent
@@ -313,7 +312,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 
     case 4: case 8:
       for (let k = 0; k < rndWord.length; k++) {
-        cell = "cell" + (row2 + k) + (col2 - k);
+        cell = "cell" + (row + k) + (col - k);
         if (
           document.getElementById(cell).textContent !== "0" &&
           rndWord[0 + k] !== document.getElementById(cell).textContent
