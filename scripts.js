@@ -70,7 +70,7 @@ function addLetters() {
       document.getElementById("cell" + i + j).innerHTML = "0"; //newRandomLetter();
     })
   );
-  document.getElementById("cell75").innerHTML = "E"
+ // document.getElementById("cell75").innerHTML = "E"
 }
 //*************************************C L E A R - L I S T******************F U N C T I O N************* */
 function deleteList() {
@@ -393,13 +393,18 @@ document.onmouseup = () => {
 /** little id tracker for my cells ****/
 var letterArray = [];
 
+
 $("td").on("click", function () {
-  console.log(letterArray.push([this.id, this.textContent]));
+ // var newId = ("" + 7 + 9)
+  $(this).css("background-color", "#8a8a8a");
+  console.log(letterArray.push([this.id, this.textContent, this.style.backgroundColor]));
   console.log(letterArray);
+ // console.log(newId.length)
+    //if ($(this.id !== this.id))
 });
 
 /*+++++TO DO's+++
-- get cell coords on event
+- get cell coords on event -- done for lookup
 - add a wordbuildig array on screen MAYBE
 - grey out words if they are found 
 - mark words, in case they did not enter the riddle
@@ -410,7 +415,9 @@ $("td").on("click", function () {
 */
 /**********Working version of colorChanger on mouseDown event *********************/
 
-
+/* class hiddenWords {
+  constructor(rndWord, )
+} */
 
 
 /*
