@@ -331,11 +331,16 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 }
 
 /***********************C R E A T E - R I D D L E***********************/
+let compare = []
+
 function drawRiddle() {
   addLetters();
   for (let x = wordArray.length - 1; x >= 0; x--) {
     rndWord = wordArray[x];
-    console.log(rndWord);
+    for (let y = rndWord.length - 1; y >= 0; y--) {
+      compare.unshift(rndWord[y]);
+    }
+    console.log([compare])
     testButton2();
   } 
   replaceZero();
