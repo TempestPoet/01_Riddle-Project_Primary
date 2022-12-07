@@ -8,7 +8,7 @@ body {
    color: rgb(255, 255, 255); 
 }
  tr > td:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
   background-color: #b6b8b6;
   cursor: pointer;
   user-select: none;

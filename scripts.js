@@ -44,7 +44,7 @@ var riddleArray = [
   ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09"],
   ["10", "11", "12", "13", "14", "15", "16", "17", "18", "19"],
   ["20", "21", "22", "23", "24", "25", "26", "27", "28", "29"],
-  ["30", "31", "32", "33", "34", "35", "36", "37", "38", "39"],
+  ["30", "31", "32", "33", "34", "35", "36", "37", "38", "39"], 
   ["40", "41", "42", "43", "44", "45", "46", "47", "48", "49"],
   ["50", "51", "52", "53", "54", "55", "56", "57", "58", "59"],
   ["60", "61", "62", "63", "64", "65", "66", "67", "68", "69"],
@@ -87,10 +87,12 @@ function clearRiddle() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
       document.getElementById("" + i + j).innerHTML = "";
+      
     })
   );
   deleteList();
   wordInputField.value = "";
+  $("td").css("background-color", "");
 }
 
 //**************************************R E V E R S E - W O R D S **************** */
@@ -292,6 +294,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
         } else {
           bool = true;
         }
+        
       }
       return bool;
 
@@ -334,7 +337,7 @@ function drawRiddle() {
     rndWord = wordArray[x];
     console.log(rndWord);
     testButton2();
-  }
+  } 
   replaceZero();
 }
 
@@ -350,47 +353,8 @@ function replaceZero() {
 }
 
 
-
-
-
-
-
-
-  
- 
-//console.log(wordArray.length);
-// rndWord = wordArray[0];
-// console.log(wordArray.length);
-// console.log(rndWord);
-//   //  rndWord => testButton2();
-// }
-//console.log($('tr > td:hover').contents().find('id').textContent)
-
-//rndWord.pop.forEach((rndWord => testButton2()));
-// testButton2(rndWord[b]);
-//}
-//console.log(word[1])
-/*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
-
-/******** allows mousedown to react to entire length of mousedown, not just entry *** */
-
-/* 
-let mouseDown = 0;
-document.onmousedown = () => {
-  ++mouseDown;
-  if (mouseDown) {
-  }
-}
-document.onmouseup = () => {
-  --mouseDown;
-  if (mouseDown) {
-  }
-}
-
- */
-
 /*************************M O U S E - E V E N T S ******************************* */
-/** little id tracker for my cells ****/
+/**Check, if clicked cell is valid ****/
 
  
 let letterArray = [];
@@ -402,8 +366,7 @@ $("td").on("click", function () {
 
   if (letterArray <= 0) {
     storedCell = newCell;
-    letterArray.push(this.id);   
-    console.log(storedCell, letterArray)
+    letterArray.push([this.id, this.innerHTML]);   
     this.classList.add('boxHighlight')
     $(this).css("background-color", "#8a8a8a");
   } else {
@@ -413,55 +376,21 @@ $("td").on("click", function () {
       if ((dx <= 1) && (dy <= 1)) {          // direkte Nachbarzelle getroffen
         this.classList.add('boxHighlight')
         $(this).css("background-color", "#8a8a8a");
-        console.log("Buchstabencheck")
+        letterArray.push([this.id, this.innerHTML]);  
         storedCell = newCell;
         console.log($(".boxHighlight"))
+        console.log(wordArray, letterArray)
       } else {
         $(".boxHighlight").css("background-color", "");
         $("td").removeClass("boxHighlight")
         letterArray = [];
-        console.log($(".boxHighlight"))
       }  
       }
 })
  
-/* $(this).css("background-color", "#8a8a8a");
-    letterArray.push(this.id);
-    console.log("else", newCell , storedCell); */
- /*
-var letterArray = [];
-let storedCell = false;
 
-$("td").on("click", function () {
-  
-  var newCell = this.id[0] + this.id[1];
-  
 
-  if (storedCell == false) {
-    storedCell = newCell
-    console.log(storedCell)
-    //this.classList.add('boxHighlight')
-    $(this.id).css("background-color", "#8a8a8a");
-    letterArray.push([this.id, this.textContent]);
-    console.log(storedCell)
-    return storedCell
 
-  }})  /* if (newCell[0][0] === storedCell[0][0 + 1])  {
-    this.classList.add('boxHighlight')
-    $(this.id).css("background-color", "#8a8a8a");
-    letterArray.push([this.id, this.textContent, this.classList]);
-    storedCell = newCell;
-    console.log(this.classList)
-  }  /* else {
-    $(".boxHighlight").css("background-color", "");
-    letterArray = [];
-  }
-   S
-  console.log(this.id[0] + this.id[1]);
-  
-
-}); */
-   
 /*+++++TO DO's+++
 - get cell coords on event -- done for lookup
 - add a wordbuildig array on screen MAYBE
@@ -490,7 +419,24 @@ function clicktest() => {
 }
 */
 
+/*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
 
+/******** allows mousedown to react to entire length of mousedown, not just entry *** */
+
+/* 
+let mouseDown = 0;
+document.onmousedown = () => {
+  ++mouseDown;
+  if (mouseDown) {
+  }
+}
+document.onmouseup = () => {
+  --mouseDown;
+  if (mouseDown) {
+  }
+}
+
+ */
 
 /**********Working version of colorChanger on mouseDown event *********************/
 
