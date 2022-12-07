@@ -415,10 +415,12 @@ $("td").on("click", function () {
         $(this).css("background-color", "#8a8a8a");
         console.log("Buchstabencheck")
         storedCell = newCell;
+        console.log($(".boxHighlight"))
       } else {
         $(".boxHighlight").css("background-color", "");
-        console.log("neues Wort")
+        $("td").removeClass("boxHighlight")
         letterArray = [];
+        console.log($(".boxHighlight"))
       }  
       }
 })
