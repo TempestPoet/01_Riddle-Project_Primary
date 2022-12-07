@@ -391,18 +391,36 @@ document.onmouseup = () => {
 
 /*************************M O U S E - E V E N T S ******************************* */
 /** little id tracker for my cells ****/
-var letterArray = [];
+
+
+
+
 
 
 $("td").on("click", function () {
  // var newId = ("" + 7 + 9)
-  $(this).css("background-color", "#8a8a8a");
-  console.log(letterArray.push([this.id, this.textContent, this.style.backgroundColor]));
-  console.log(letterArray);
- // console.log(newId.length)
-    //if ($(this.id !== this.id))
-});
-
+ var letterArray = [];
+ 
+ var newCell = this.id[0] + this.id[1];
+ var storedCell = newCell;
+ 
+ if ((newCell[0] >= storedCell[0] - 1  && newCell[0] <= storedCell[0] + 1) 
+ /* || (newCell[1] >= storedCell[1] - 1  && newCell[1] <= storedCell[1] + 1) */) {
+   $(this).css("background-color", "#8a8a8a");
+   letterArray.push([this.id, this.textContent]); 
+  } else {
+    $(('td').css('background-color', ''));
+    letterArray = [];
+  }
+   
+   
+   
+  
+  
+  console.log(this.id[0] + this.id[1])
+  return newCell
+  });
+  
 /*+++++TO DO's+++
 - get cell coords on event -- done for lookup
 - add a wordbuildig array on screen MAYBE
