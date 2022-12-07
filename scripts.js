@@ -29,7 +29,7 @@ function validate(e) {
     let newAddList = document.createElement("li");
     newAddList.classList.add("listedItems");
     newAddList.setAttribute("id", "newWordEntry");
-    newAddList.textContent = wordInputField.value;
+    newAddList.textContent = wordInputField.value.toLowerCase();
     orderedWordList.appendChild(newAddList);
     console.log(wordArray.push(newAddList.textContent));
     console.log(wordArray);
@@ -392,35 +392,74 @@ document.onmouseup = () => {
 /*************************M O U S E - E V E N T S ******************************* */
 /** little id tracker for my cells ****/
 
-
-
-
-
+ 
+let letterArray = [];
+var storedCell;
+//var storedCell = letterArray.slice(-1)
 
 $("td").on("click", function () {
- // var newId = ("" + 7 + 9)
- var letterArray = [];
- 
- var newCell = this.id[0] + this.id[1];
- var storedCell = newCell;
- 
- if ((newCell[0] >= storedCell[0] - 1  && newCell[0] <= storedCell[0] + 1) 
- /* || (newCell[1] >= storedCell[1] - 1  && newCell[1] <= storedCell[1] + 1) */) {
-   $(this).css("background-color", "#8a8a8a");
-   letterArray.push([this.id, this.textContent]); 
+  let newCell = this.id[0] + this.id[1];
+
+  if (letterArray <= 0) {
+    storedCell = newCell;
+    letterArray.push(this.id);   
+    console.log(storedCell, letterArray)
+    this.classList.add('boxHighlight')
+    $(this).css("background-color", "#8a8a8a");
   } else {
-    $(('td').css('background-color', ''));
+    console.log(storedCell)
+    var dx = Math.abs (newCell[0] - storedCell[0]);
+    var dy = Math.abs (newCell[1] - storedCell[1]);
+      if ((dx <= 1) && (dy <= 1)) {          // direkte Nachbarzelle getroffen
+        this.classList.add('boxHighlight')
+        $(this).css("background-color", "#8a8a8a");
+        console.log("Buchstabencheck")
+        storedCell = newCell;
+      } else {
+        $(".boxHighlight").css("background-color", "");
+        console.log("neues Wort")
+        letterArray = [];
+      }  
+      }
+})
+ 
+/* $(this).css("background-color", "#8a8a8a");
+    letterArray.push(this.id);
+    console.log("else", newCell , storedCell); */
+ /*
+var letterArray = [];
+let storedCell = false;
+
+$("td").on("click", function () {
+  
+  var newCell = this.id[0] + this.id[1];
+  
+
+  if (storedCell == false) {
+    storedCell = newCell
+    console.log(storedCell)
+    //this.classList.add('boxHighlight')
+    $(this.id).css("background-color", "#8a8a8a");
+    letterArray.push([this.id, this.textContent]);
+    console.log(storedCell)
+    return storedCell
+
+  }})  /* if (newCell[0][0] === storedCell[0][0 + 1])  {
+    this.classList.add('boxHighlight')
+    $(this.id).css("background-color", "#8a8a8a");
+    letterArray.push([this.id, this.textContent, this.classList]);
+    storedCell = newCell;
+    console.log(this.classList)
+  }  /* else {
+    $(".boxHighlight").css("background-color", "");
     letterArray = [];
   }
-   
-   
-   
+   S
+  console.log(this.id[0] + this.id[1]);
   
-  
-  console.log(this.id[0] + this.id[1])
-  return newCell
-  });
-  
+
+}); */
+   
 /*+++++TO DO's+++
 - get cell coords on event -- done for lookup
 - add a wordbuildig array on screen MAYBE
@@ -431,6 +470,26 @@ $("td").on("click", function () {
 - have words enter counter-diagonal
 
 */
+/*******************O P T I O N S - F O R - B O X - C H E C K *************** */
+/*
+lastclick.x = -1
+lastclick.y = -1
+
+function clicktest() => {
+  aktuellclick.x = coordX
+  aktuellclick.y = coordY
+  if lastclick -1 then lastclick = firstclick
+  firstclick = farbe, coordx, coordY
+  aktuellcluck = farbe;
+
+    prüfe mit deltaX deltaY, if lastclick = -1, -1 pattern (z.b) über differenz,
+    färbe alle felder auf dem weg;
+
+}
+*/
+
+
+
 /**********Working version of colorChanger on mouseDown event *********************/
 
 /* class hiddenWords {
