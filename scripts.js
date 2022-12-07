@@ -331,20 +331,32 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 }
 
 /***********************C R E A T E - R I D D L E***********************/
-let compare = []
+let compare = [];
 
 function drawRiddle() {
   addLetters();
-  for (let x = wordArray.length - 1; x >= 0; x--) {
+
+   for (let x = wordArray.length - 1; x >= 0; x--) {
     rndWord = wordArray[x];
-    for (let y = rndWord.length - 1; y >= 0; y--) {
-      compare.unshift(rndWord[y]);
-    }
-    console.log([compare])
+    rndWord = rndWord.split('');
+    compare.push([rndWord]);
+    console.log(compare);
     testButton2();
   } 
   replaceZero();
 }
+/*
+ function getAllLetters(rndWord) {
+  if (rndWord === '') {               // If arguments is blank
+      return [];                  // return an empty array
+  }
+  return rndWord.split('');           // Else, split string using the split() method, which returns an array
+}
+
+var output = getAllLetters('Radagast');
+ */
+
+
 
 /*****************************R E P L A C E - Z E R O S ***********************************************/
 function replaceZero() {
@@ -358,10 +370,8 @@ function replaceZero() {
 }
 
 
-/*************************M O U S E - E V E N T S ******************************* */
-/**Check, if clicked cell is valid ****/
+/*************************Mouse Event - C L I C K - O B S E R V E R  ******************************* */
 
- 
 let letterArray = [];
 var storedCell;
 //var storedCell = letterArray.slice(-1)
