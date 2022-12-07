@@ -1,3 +1,5 @@
+const { Callbacks } = require("jquery");
+
 //********************************************G L O B A L - C O N S T A N T S*************************************** */
 const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
@@ -419,7 +421,8 @@ compareArray = compareArray.flat(1);
       
       if (compareArray[0].includes(wordCheck)) {
         if (letterArray.length == compareArray[0].length) { 
-        $(".boxHighlight").css("background-color", "green");
+        $(letterArray.forEach(array => { element.css("background-color", "green")}));
+        
 
         }
       //console.log(wordCheck)
