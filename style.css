@@ -108,7 +108,10 @@ td {
    /* color: #2696b8; */
   }
 
-
+.solved {
+  text-decoration: line-through;
+  color: #8a8a8a;
+}
 
   
 /*******************************E X P E R I M E N T A L - M O U S E O V E R**********************************/
