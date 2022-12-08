@@ -1,3 +1,5 @@
+const { Callbacks } = require("jquery");
+
 //********************************************G L O B A L - C O N S T A N T S*************************************** */
 const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
@@ -15,7 +17,7 @@ wordSubmitButton.addEventListener("click", () => {
 
 /***prevents spacebar usage and allows valid entry with enter-button ****/
 wordInputField.addEventListener("keydown", function (e) {
-  console.log(e.which);
+  //console.log(e.which);
   if (e.code === "Enter" && e.which !== 32) {
     validate(e);
   } else if (e.which === 32) {
@@ -31,7 +33,7 @@ function validate(e) {
     newAddList.setAttribute("id", "newWordEntry");
     newAddList.textContent = wordInputField.value.toLowerCase();
     orderedWordList.appendChild(newAddList);
-    console.log(wordArray.push(newAddList.textContent));
+    wordArray.push(newAddList.textContent);
     console.log(wordArray);
   //  wordInputField.value = "";
   } else {
@@ -111,7 +113,7 @@ function testButton2() {
   var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("" + row + col);
   var switchRandomizer = Math.floor(Math.random() * 8) + 1;
-  //console.log(row + " " + " "+  col + " " + " " +  cell);
+  
   
   if (switchRandomizer > 4) {
     rndWord = reverseString(rndWord);
@@ -267,9 +269,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   var col = col2;
   var switchRandomizer = switchRandomizer2;
 
-  console.log(rndWord + " test2");
- // console.log(bool, row2, col2, switchRandomizer2)
-  // console.log(cell, row, col, switchRandomizer)
+ 
   switch (switchRandomizer2) {
     case 1: case 5:
       console.log("dir5")
