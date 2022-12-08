@@ -1,5 +1,3 @@
-const { Callbacks } = require("jquery");
-
 //********************************************G L O B A L - C O N S T A N T S*************************************** */
 const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
@@ -130,7 +128,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          // window.alert(cell.innerHTML + row + col);
+          numberCompareArray.push(cell.id)
         }
       } else {
        testButton2();
@@ -146,6 +144,7 @@ function testButton2() {
           const cell = document.getElementById("" + row + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
+          numberCompareArray.push(cell.id)
         }
       } else {
         testButton2();
@@ -163,6 +162,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
+          numberCompareArray.push(cell.id)
         }
       } else {
         testButton2();
@@ -180,6 +180,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col--);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
+          numberCompareArray.push(cell.id)
         }
       } else {
         testButton2();
@@ -197,6 +198,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
+          numberCompareArray.push(cell.id)
         }
       } else {
        testButton2();
@@ -213,6 +215,7 @@ function testButton2() {
           const cell = document.getElementById("" + row + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
+          numberCompareArray.push(cell.id)
         }
       } else {
         testButton2();
@@ -230,6 +233,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
+          numberCompareArray.push(cell.id)
         }
       } else {
         testButton2();
@@ -248,6 +252,8 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col--);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
+          numberCompareArray.push(cell.id)
+          
         }
       } else {
         testButton2();
@@ -261,7 +267,7 @@ function testButton2() {
     //return cell.innerHTML;
   }
 }
-
+let numberCompareArray = []
 /**************************W O R D - M A T C H - C H E C K E R***************** */
 function testWord(bool, row2, col2, switchRandomizer2) {
   var cell = bool;
@@ -370,20 +376,26 @@ function replaceZero() {
 
 
 /*************************Mouse Event - C L I C K - O B S E R V E R  ******************************* */
- 
+
+
+//let testSet = new Set();
+
 let letterArray = [];
 var storedCell;
 //var storedCell = letterArray.slice(-1)
 
+
 $("td").on("click", function () {
   let newCell = this.id[0] + this.id[1];
-
+ // testSet.add(this.id);
+  
+  
+  //console.log(testSet.entries())
   if (letterArray <= 0) {
     storedCell = newCell;
     this.classList.add('boxHighlight')
     $(this).css("background-color", "#8a8a8a");
-    letterArray.push(this.innerHTML);  
-    console.log(letterArray, compareArray, wordArray)
+    letterArray.push(this.innerHTML); 
   } else {
     // console.log(storedCell)
     var dx = Math.abs (newCell[0] - storedCell[0]);
@@ -391,20 +403,29 @@ $("td").on("click", function () {
       if ((dx <= 1) && (dy <= 1)) {          // direkte Nachbarzelle getroffen
         this.classList.add('boxHighlight')
         $(this).css("background-color", "#8a8a8a");
-        letterArray.push(this.innerHTML);  
+        letterArray.push(this.innerHTML); 
+        wordCheck = letterArray.join("")
         storedCell = newCell;
+        if ((wordArray.length > 2) && wordArray.includes(wordCheck)) {
+           letterArray.forEach(element => $('.boxHighlight').css("background-color", "green"));
+            $("td").removeClass("boxHighlight")    
+         
+        }
+
        // console.log($(".boxHighlight"))
-        compareLetters(letterArray, compareArray, wordArray)
-        console.log(letterArray, compareArray, wordArray)
       } else {
         $(".boxHighlight").css("background-color", "");
         $("td").removeClass("boxHighlight")
         letterArray = [];
+       /*  this.classList.add('boxHighlight')
+        $(this).css("background-color", "#8a8a8a");
+        letterArray.push(this.innerHTML); */
+        //testSet.clear();
       }  
       }
 })
  
-
+/************************T E S T - A R R A Y ************************/
 
 
 /*+++++TO DO's+++
