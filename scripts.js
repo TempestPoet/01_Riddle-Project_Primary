@@ -36,7 +36,7 @@ function validate(e) {
     orderedWordList.appendChild(newAddList);
     wordArray.push(newAddList.textContent);
     console.log(wordArray);
-    //  wordInputField.value = "";
+    wordInputField.value = "";
   } else {
     wordInputField.value = wordInputField.value.match(new RegExp(/[a-zA-Z]+/));
   }
@@ -80,9 +80,6 @@ function deleteList() {
   wordArray.length = 0;
   orderedWordList.replaceChildren();
 }
-/* while (orderedWordList.length !== 0) {
-  orderedWordList.removeChild(document.getElementById('newWordEntry'));
-  } */
 
 //*************************************C L E A R - L E T T E R S******************F U N C T I O N************* */
 function clearRiddle() {
@@ -114,6 +111,8 @@ function testButton2() {
   var cell = document.getElementById("" + row + col);
   var switchRandomizer = Math.floor(Math.random() * 8) + 1;
 
+  
+  
   if (switchRandomizer > 4) {
     rndWord = reverseString(rndWord);
   }
@@ -239,6 +238,7 @@ function testButton2() {
         testButton2();
       }
       break;
+
     // ----- D I A G O N A L - R E V E R S E TopRight to BottomLeft------
     case 8:
       if (
@@ -262,7 +262,7 @@ function testButton2() {
 
     default:
       break;
-
+    
     //return cell.innerHTML;
   }
 }
@@ -277,7 +277,6 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   switch (switchRandomizer2) {
     case 1:
     case 5:
-      console.log("dir5");
       for (let k = 0; k < rndWord.length; k++) {
         cell = "" + (row + k) + col;
         if (
