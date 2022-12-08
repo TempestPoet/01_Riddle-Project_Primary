@@ -401,9 +401,9 @@ $("td").on("click", function () {
     this.classList.add("boxHighlight");
     $(this).css("background-color", "#8a8a8a");
     letterArray.push(this.innerHTML);
+    startCell = newCell;
     
   } else {
-    // console.log(storedCell)
     var dx = Math.abs(newCell[0] - storedCell[0]);
     var dy = Math.abs(newCell[1] - storedCell[1]);
     if (dx <= 1 && dy <= 1) {
@@ -414,6 +414,7 @@ $("td").on("click", function () {
       letterArray.push(this.innerHTML);
       wordCheck = letterArray.join("");
       storedCell = newCell;
+      console.log(startCell);
       // if correct word, applies color to td
       if (wordArray.includes(wordCheck)) {                   
         letterArray.forEach((element) =>
@@ -446,7 +447,8 @@ $("td").on("click", function () {
 
 /*************** M A R K - W O R D - A S - C O M P L E T E ***********/
 
-//numberCompareArray.push(cell.id);
+//directionCheck
+
 
 
 /************************T E S T - A R R A Y ************************/
