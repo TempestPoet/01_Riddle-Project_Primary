@@ -1,3 +1,5 @@
+const { Callbacks } = require("jquery");
+
 //********************************************G L O B A L - C O N S T A N T S*************************************** */
 const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
@@ -15,7 +17,7 @@ wordSubmitButton.addEventListener("click", () => {
 
 /***prevents spacebar usage and allows valid entry with enter-button ****/
 wordInputField.addEventListener("keydown", function (e) {
-  console.log(e.which);
+  //console.log(e.which);
   if (e.code === "Enter" && e.which !== 32) {
     validate(e);
   } else if (e.which === 32) {
@@ -31,7 +33,7 @@ function validate(e) {
     newAddList.setAttribute("id", "newWordEntry");
     newAddList.textContent = wordInputField.value.toLowerCase();
     orderedWordList.appendChild(newAddList);
-    console.log(wordArray.push(newAddList.textContent));
+    wordArray.push(newAddList.textContent);
     console.log(wordArray);
   //  wordInputField.value = "";
   } else {
@@ -111,7 +113,7 @@ function testButton2() {
   var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("" + row + col);
   var switchRandomizer = Math.floor(Math.random() * 8) + 1;
-  //console.log(row + " " + " "+  col + " " + " " +  cell);
+  
   
   if (switchRandomizer > 4) {
     rndWord = reverseString(rndWord);
@@ -267,12 +269,9 @@ function testWord(bool, row2, col2, switchRandomizer2) {
   var col = col2;
   var switchRandomizer = switchRandomizer2;
 
-  console.log(rndWord + " test2");
- // console.log(bool, row2, col2, switchRandomizer2)
-  // console.log(cell, row, col, switchRandomizer)
+ 
   switch (switchRandomizer2) {
     case 1: case 5:
-      console.log("dir5")
       for (let k = 0; k < rndWord.length; k++) {
         cell = "" + (row + k) + col;
         if (document.getElementById(cell).textContent !== "0" && rndWord[0 + k]  !== document.getElementById(cell).textContent) {
@@ -336,7 +335,7 @@ let compareArray = [];
 function drawRiddle() {
   addLetters();
 
-  for (let x = wordArray.length - 1; x >= 0; x--) {
+   for (let x = wordArray.length - 1; x >= 0; x--) {
     rndWord = wordArray[x];
     rndWord = rndWord.split('');
     compareArray.push(rndWord);
@@ -370,7 +369,7 @@ function replaceZero() {
 
 
 /*************************Mouse Event - C L I C K - O B S E R V E R  ******************************* */
- 
+
 let letterArray = [];
 var storedCell;
 //var storedCell = letterArray.slice(-1)
@@ -379,7 +378,7 @@ $("td").on("click", function () {
   let newCell = this.id[0] + this.id[1];
 
   if (letterArray <= 0) {
-    storedCell = newCell;
+    storedCell = newCell; 
     this.classList.add('boxHighlight')
     $(this).css("background-color", "#8a8a8a");
     letterArray.push(this.innerHTML);  
@@ -404,11 +403,49 @@ $("td").on("click", function () {
       }
 })
  
+/******** C O M P A R I S O N - F U N C T I O N ************/
+var wordCheck = [];
+//wordCheck.join(''); 
+//let newWordArray = wordCheck.;
+compareArray = compareArray.flat(1);
 
+
+ function compareLetters(letterArray, compareArray, wordArray) {
+  console.log(compareArray)
+  for (let i = 0; i < wordArray.length; i++ ) {
+    for (let j = 0; j < letterArray.length; j++) {
+      if (letterArray[j] == compareArray[i][j]) {
+        wordCheck += letterArray[j];
+      }  
+      
+      if (compareArray[0].includes(wordCheck)) {
+        if (letterArray.length == compareArray[0].length) { 
+        $(letterArray.forEach(array => { element.css("background-color", "green")}));
+        
+
+        }
+      //console.log(wordCheck)
+    }  else {
+      wordCheck = "";
+    }
+  } 
+  }
+    
+}
+ 
+/*
+function getAllLetters(wordArray) {
+     if (wordArray === '') {               // If arguments is blank
+        return [];                  // return an empty array
+    } 
+    return word.split('');           // Else, split string using the split() method, which returns an array
+}
+var output = getAllLetters('Radagast');
+console.log(output); // --> ['R', 'a', 'd', 'a', 'g', 'a', 's', 't']
+*/
 
 
 /*+++++TO DO's+++
-- get cell coords on event -- done for lookup
 - add a wordbuildig array on screen MAYBE
 - grey out words if they are found 
 - mark words, in case they did not enter the riddle
@@ -421,17 +458,14 @@ $("td").on("click", function () {
 /*
 lastclick.x = -1
 lastclick.y = -1
-
 function clicktest() => {
   aktuellclick.x = coordX
   aktuellclick.y = coordY
   if lastclick -1 then lastclick = firstclick
   firstclick = farbe, coordx, coordY
   aktuellcluck = farbe;
-
     prüfe mit deltaX deltaY, if lastclick = -1, -1 pattern (z.b) über differenz,
     färbe alle felder auf dem weg;
-
 }
 */
 
@@ -451,7 +485,6 @@ document.onmouseup = () => {
   if (mouseDown) {
   }
 }
-
  */
 
 /**********Working version of colorChanger on mouseDown event *********************/
@@ -466,7 +499,6 @@ document.addEventListener('mouseover', () => {
   if (mouseDown > 0){
   $('tr > td:hover').css('background-color', 'green');} 
 })
-
 document.addEventListener('mouseover', () => {
   if (mouseDown == 0){
   $('tr > td:hover').css('background-color', '');
