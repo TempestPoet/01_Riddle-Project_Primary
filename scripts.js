@@ -379,7 +379,7 @@ function replaceZero() {
 
 
 //let testSet = new Set();
-
+let wordCheck = "";
 let letterArray = [];
 var storedCell;
 //var storedCell = letterArray.slice(-1)
@@ -406,10 +406,9 @@ $("td").on("click", function () {
         letterArray.push(this.innerHTML); 
         wordCheck = letterArray.join("")
         storedCell = newCell;
-        if ((wordArray.length > 2) && wordArray.includes(wordCheck)) {
-           letterArray.forEach(element => $('.boxHighlight').css("background-color", "green"));
-            $("td").removeClass("boxHighlight")    
-         
+        if (wordArray.includes(wordCheck)) {
+           letterArray.forEach(element => $('.boxHighlight').css("background-color", "green")); 
+           $("td").removeClass("boxHighlight") 
         }
 
        // console.log($(".boxHighlight"))
@@ -417,7 +416,7 @@ $("td").on("click", function () {
         $(".boxHighlight").css("background-color", "");
         $("td").removeClass("boxHighlight")
         letterArray = [];
-       /*  this.classList.add('boxHighlight')
+        /* this.classList.add('boxHighlight')
         $(this).css("background-color", "#8a8a8a");
         letterArray.push(this.innerHTML); */
         //testSet.clear();
@@ -425,6 +424,15 @@ $("td").on("click", function () {
       }
 })
  
+
+/*************** M A R K - W O R D - A S - C O M P L E T E ***********/
+
+
+
+
+
+
+
 /************************T E S T - A R R A Y ************************/
 
 
