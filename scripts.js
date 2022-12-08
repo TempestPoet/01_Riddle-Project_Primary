@@ -343,7 +343,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 }
 
 /***********************C R E A T E - R I D D L E***********************/
-//let compareArray = [];
+let compareArray = [];
 
 function drawRiddle() {
   addLetters();
