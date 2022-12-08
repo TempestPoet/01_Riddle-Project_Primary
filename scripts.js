@@ -343,9 +343,10 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 }
 
 /***********************C R E A T E - R I D D L E***********************/
-let compareArray = [];
+
 
 function drawRiddle() {
+  
   addLetters();
 
   for (let x = wordArray.length - 1; x >= 0; x--) {
@@ -380,29 +381,33 @@ function replaceZero() {
 
 /*************************Mouse Event - C L I C K - O B S E R V E R  ******************************* */
 
+/*  $.each(,function(newCell){
+  if ($.inArray(newCell, letterArray)==-1) letterArray.push(this.innerHTML);
+});
+  */
 
-
-//let testSet = new Set();
+let compareArray = [];
 let wordCheck = "";
 let letterArray = [];
 var storedCell;
-//var storedCell = letterArray.slice(-1)
+
 
 $("td").on("click", function () {
   let newCell = this.id[0] + this.id[1];
-  // testSet.add(this.id);
-
-  //console.log(testSet.entries())
-  if (letterArray <= 0) {
+  if (compareArray.includes(newCell) === false) {
+  if (letterArray.length < 1) {
+    compareArray.push(newCell);
     storedCell = newCell;
     this.classList.add("boxHighlight");
     $(this).css("background-color", "#8a8a8a");
     letterArray.push(this.innerHTML);
+    
   } else {
     // console.log(storedCell)
     var dx = Math.abs(newCell[0] - storedCell[0]);
     var dy = Math.abs(newCell[1] - storedCell[1]);
     if (dx <= 1 && dy <= 1) {
+      compareArray.push(newCell);
       // direkte Nachbarzelle getroffen
       this.classList.add("boxHighlight");
       $(this).css("background-color", "#8a8a8a");
@@ -420,19 +425,23 @@ $("td").on("click", function () {
           "text-decoration": "line-through",
           color: "#8a8a8a",
         });
+        letterArray = [];
+      compareArray = [];
       }
     } else {
       $(".boxHighlight").css("background-color", "");
       $("td").removeClass("boxHighlight");
       letterArray = [];
-      /* this.classList.add('boxHighlight')
-        $(this).css("background-color", "#8a8a8a");
-        letterArray.push(this.innerHTML); */
-      //testSet.clear();
+      compareArray = [];
+      compareArray.push(newCell);
+      storedCell = newCell;
+      this.classList.add("boxHighlight");
+      $(this).css("background-color", "#8a8a8a");
+      letterArray.push(this.innerHTML);
     }
   }
+}
 });
-
 // $("li#newWordEntry.listedItems").fi
 
 /*************** M A R K - W O R D - A S - C O M P L E T E ***********/
