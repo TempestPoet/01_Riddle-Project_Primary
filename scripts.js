@@ -128,7 +128,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          numberCompareArray.push(cell.id);
+         
         }
       } else {
         testButton2();
@@ -144,7 +144,7 @@ function testButton2() {
           const cell = document.getElementById("" + row + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          numberCompareArray.push(cell.id);
+        
         }
       } else {
         testButton2();
@@ -162,7 +162,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          numberCompareArray.push(cell.id);
+        
         }
       } else {
         testButton2();
@@ -180,7 +180,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col--);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          numberCompareArray.push(cell.id);
+         
         }
       } else {
         testButton2();
@@ -197,7 +197,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          numberCompareArray.push(cell.id);
+          
         }
       } else {
         testButton2();
@@ -214,7 +214,7 @@ function testButton2() {
           const cell = document.getElementById("" + row + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          numberCompareArray.push(cell.id);
+       
         }
       } else {
         testButton2();
@@ -232,7 +232,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col++);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          numberCompareArray.push(cell.id);
+          
         }
       } else {
         testButton2();
@@ -253,7 +253,7 @@ function testButton2() {
           const cell = document.getElementById("" + row++ + col--);
           cell.innerHTML = "";
           cell.innerHTML += rndWord[0 + k];
-          numberCompareArray.push(cell.id);
+          
         }
       } else {
         testButton2();
@@ -266,7 +266,7 @@ function testButton2() {
     //return cell.innerHTML;
   }
 }
-let numberCompareArray = [];
+
 /**************************W O R D - M A T C H - C H E C K E R***************** */
 function testWord(bool, row2, col2, switchRandomizer2) {
   var cell = bool;
@@ -343,7 +343,7 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 }
 
 /***********************C R E A T E - R I D D L E***********************/
-let compareArray = [];
+//let compareArray = [];
 
 function drawRiddle() {
   addLetters();
@@ -351,11 +351,11 @@ function drawRiddle() {
   for (let x = wordArray.length - 1; x >= 0; x--) {
     rndWord = wordArray[x];
     rndWord = rndWord.split("");
-    compareArray.push(rndWord);
-    // console.log(compareArray);
+  //  compareArray.push(rndWord);
     testButton2();
   }
   replaceZero();
+  
 }
 /*
  function getAllLetters(rndWord) {
@@ -379,6 +379,8 @@ function replaceZero() {
 }
 
 /*************************Mouse Event - C L I C K - O B S E R V E R  ******************************* */
+
+
 
 //let testSet = new Set();
 let wordCheck = "";
@@ -407,11 +409,13 @@ $("td").on("click", function () {
       letterArray.push(this.innerHTML);
       wordCheck = letterArray.join("");
       storedCell = newCell;
-      if (wordArray.includes(wordCheck)) {
+      // if correct word, applies color to td
+      if (wordArray.includes(wordCheck)) {                   
         letterArray.forEach((element) =>
           $(".boxHighlight").css("background-color", "green")
         );
         $("td").removeClass("boxHighlight");
+      // adds crossing out and grey to word in list 
         $("#" + wordCheck).css({
           "text-decoration": "line-through",
           color: "#8a8a8a",
@@ -432,6 +436,9 @@ $("td").on("click", function () {
 // $("li#newWordEntry.listedItems").fi
 
 /*************** M A R K - W O R D - A S - C O M P L E T E ***********/
+
+//numberCompareArray.push(cell.id);
+
 
 /************************T E S T - A R R A Y ************************/
 
