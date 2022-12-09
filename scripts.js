@@ -91,7 +91,8 @@ function clearRiddle() {
   );
   deleteList();
   wordInputField.value = "";
-  $("td").css("background-color", "");
+  $("td").css("background-color", ""),
+  $("td").removeClass("solved")
 }
 
 //**************************************R E V E R S E - W O R D S **************** */
@@ -418,9 +419,10 @@ $("td").on("click", function () {
       // if correct word, applies color to td
       if (wordArray.includes(wordCheck)) {                   
         letterArray.forEach((element) =>
-          $(".boxHighlight").css("background-color", "green")
+        $(".boxHighlight").removeClass("boxHighlight").addClass("solved"),
+        $(".boxHighlight").css("background-color", "green")
         );
-        $("td").removeClass("boxHighlight");
+        //$("td").removeClass("boxHighlight");
       // adds crossing out and grey to word in list 
         $("#" + wordCheck).css({
           "text-decoration": "line-through",

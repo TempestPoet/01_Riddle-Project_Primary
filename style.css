@@ -108,9 +108,9 @@ td {
    /* color: #2696b8; */
   }
 
-.solved {
-  text-decoration: line-through;
-  color: #8a8a8a;
+td.solved {
+ /* text-decoration: line-through; */
+  background-color: green;
 }
 
   
