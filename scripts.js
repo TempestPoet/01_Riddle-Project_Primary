@@ -391,10 +391,16 @@ let compareArray = [];
 let wordCheck = "";
 let letterArray = [];
 var storedCell;
-
+var dx;
+var dy;
+var x; 
+var y; 
+var newCell;
 
 $("td").on("click", function () {
-  let newCell = this.id[0] + this.id[1];
+  newCell = this.id[0] + this.id[1];
+  x = parseInt(newCell[0]);
+  y = parseInt(newCell[1]);
   if (compareArray.includes(newCell) === false) {
   if (letterArray.length < 1) {
     compareArray.push(newCell);
@@ -402,11 +408,11 @@ $("td").on("click", function () {
     this.classList.add("boxHighlight");
     $(this).css("background-color", "#8a8a8a");
     letterArray.push(this.innerHTML);
-    startCell = newCell;
-    
+    startCell = newCell; 
+    directionCheck(this.id, x, y)
   } else {
-    var dx = Math.abs(newCell[0] - storedCell[0]);
-    var dy = Math.abs(newCell[1] - storedCell[1]);
+    dx = Math.abs(newCell[0] - storedCell[0]);
+    dy = Math.abs(newCell[1] - storedCell[1]);
     if (dx <= 1 && dy <= 1) {
       compareArray.push(newCell);
       // direkte Nachbarzelle getroffen
@@ -414,8 +420,11 @@ $("td").on("click", function () {
       $(this).css("background-color", "#8a8a8a");
       letterArray.push(this.innerHTML);
       wordCheck = letterArray.join("");
+      x = parseInt(storedCell[0]);
+      y = parseInt(storedCell[1]);
       storedCell = newCell;
-      console.log(startCell);
+      directionCheck(this.id, x, y)
+      //console.log(startCell);
       // if correct word, applies color to td
       if (wordArray.includes(wordCheck)) {                   
         letterArray.forEach((element) =>
@@ -449,7 +458,96 @@ $("td").on("click", function () {
 
 /*************** M A R K - W O R D - A S - C O M P L E T E ***********/
 
-//directionCheck
+
+
+/* var next = fnGetSquare(x, y) 
+            square = puzzle[next.y][next.x]; */
+
+var allOrientations = ['horizontal','horizontalBack','vertical','verticalUp',
+'diagonal','diagonalUp','diagonalBack','diagonalUpBack'];
+
+// The definition of the orientation, calculates the next square given a
+// starting square (x,y) and distance (i) from that square.
+
+/* var nextOrientation = {
+horizontal:     function(x,y) { return {x: x+1, y: y  }; },
+horizontalBack: function(x,y) { return {x: x-1, y: y  }; },
+vertical:       function(x,y) { return {x: x,   y: y+1}; },
+verticalUp:     function(x,y) { return {x: x,   y: y-1}; },
+diagonal:       function(x,y) { return {x: x+1, y: y+1}; },
+diagonalBack:   function(x,y) { return {x: x-1, y: y+1}; },
+diagonalUp:     function(x,y) { return {x: x+1, y: y-1}; },
+diagonalUpBack: function(x,y) { return {x: x-1, y: y-1}; }
+}; */
+
+var nextOrientation = {
+  horizontal:     function(x,y) { return ( "" + (x+1) + y )  ; },
+  horizontalBack: function(x,y) { return x= x-1, y= y; },
+  vertical:       function(x,y) { return {x: x,   y: y+1}; },
+  verticalUp:     function(x,y) { return {x: x,   y: y-1}; },
+  diagonal:       function(x,y) { return {x: x+1, y: y+1}; },
+  diagonalBack:   function(x,y) { return {x: x-1, y: y+1}; },
+  diagonalUp:     function(x,y) { return {x: x+1, y: y-1}; },
+  diagonalUpBack: function(x,y) { return {x: x-1, y: y-1}; }
+  };
+    
+
+//next = orientations[orientation],
+ 
+var nextCell
+var startCell
+function directionCheck(startCell, x, y) { 
+  //if () 
+  //for (i = 0; i < allOrientations.length; i++) {
+    nextCell = x + y;
+    startCell = startCell[0] + startCell[1];
+
+     console.log(startCell, newCell, "" + x + y, nextOrientation.horizontal(x, y)) 
+      
+
+//  }  
+// console.log(startCell, storedCell, newCell, allOrientations)
+  
+}
+
+ /**
+    * Given two points, ensure that they are adjacent and determine what
+    * orientation the second point is relative to the first
+    *
+    * @param {int} x1: The x coordinate of the first point
+    * @param {int} y1: The y coordinate of the first point
+    * @param {int} x2: The x coordinate of the second point
+    * @param {int} y2: The y coordinate of the second point
+    */
+ /*
+ var calcOrientation = function (x1, y1, x2, y2) {
+
+  for (var orientation in wordfind.orientations) {
+    var nextFn = wordfind.orientations[orientation];
+    var nextPos = nextFn(x1, y1, 1);
+
+    if (nextPos.x === x2 && nextPos.y === y2) {
+      return orientation;
+    }
+  }
+
+  return null;
+};
+
+ */
+
+
+/* var lastOrientation = {
+  horizontal:     function(x,y) { return {x: x-1, y: y  }; },
+  horizontalBack: function(x,y) { return {x: x+1, y: y  }; },
+  vertical:       function(x,y) { return {x: x,   y: y-1}; },
+  verticalUp:     function(x,y) { return {x: x,   y: y+1}; },
+  diagonal:       function(x,y) { return {x: x-1, y: y-1}; },
+  diagonalBack:   function(x,y) { return {x: x+1, y: y-1}; },
+  diagonalUp:     function(x,y) { return {x: x-1, y: y+1}; },
+  diagonalUpBack: function(x,y) { return {x: x+1, y: y+1}; }
+  }; */
+
 
 
 
