@@ -1,7 +1,7 @@
 //********************************************G L O B A L - C O N S T A N T S*************************************** */
 const wordSubmitButton = document.getElementById("word-submit-button");
 const wordInputField = document.getElementById("word-input-field");
-const wordList = document.querySelector("addedWordList");
+//const wordList = document.querySelector("addedWordList");
 const orderedWordList = document.getElementById("ordered-List");
 //var rndWord = "";
 var wordArray = [];
@@ -359,15 +359,6 @@ function drawRiddle() {
   replaceZero();
   
 }
-/*
- function getAllLetters(rndWord) {
-  if (rndWord === '') {               // If arguments is blank
-      return [];                  // return an empty array
-  }
-  return rndWord.split('');           // Else, split string using the split() method, which returns an array
-}
-var output = getAllLetters('Radagast');
- */
 
 /*****************************R E P L A C E - Z E R O S ***********************************************/
 function replaceZero() {
@@ -382,67 +373,57 @@ function replaceZero() {
 
 /*************************Mouse Event - C L I C K - O B S E R V E R  ******************************* */
 
-/*  $.each(,function(newCell){
-  if ($.inArray(newCell, letterArray)==-1) letterArray.push(this.innerHTML);
-});
-  */
-
-let compareArray = [];
+var compareArray = [];
 let wordCheck = "";
-let letterArray = [];
-var storedCell;
-var dx;
-var dy;
-var x; 
-var y; 
-var newCell;
+var letterArray = [];
+var startCell, newCell, storedCell;
+var x1, y1, x2, y2; 
+var distance
 
 $("td").on("click", function () {
   newCell = this.id[0] + this.id[1];
-  x = parseInt(newCell[0]);
-  y = parseInt(newCell[1]);
-  if (compareArray.includes(newCell) === false) {
-  if (letterArray.length < 1) {
+  distance = letterArray.length
+  if (compareArray.includes(newCell) === false) {                                  //the initial-click on the riddle field when starting anew
+  if (letterArray.length === 0) {
     compareArray.push(newCell);
     storedCell = newCell;
     this.classList.add("boxHighlight");
     $(this).css("background-color", "#8a8a8a");
     letterArray.push(this.innerHTML);
-    startCell = newCell; 
-    directionCheck(this.id, x, y)
+    startCell = this.id[0] + this.id[1];
+    x1 = parseInt(this.id[0]);
+    y1 = parseInt(this.id[1]); 
+    //console.log({x1, y1})
   } else {
     dx = Math.abs(newCell[0] - storedCell[0]);
     dy = Math.abs(newCell[1] - storedCell[1]);
-    if (dx <= 1 && dy <= 1) {
+    if (dx <= 1 && dy <= 1) { 
+      x2 = parseInt(this.id[0]);
+      y2 = parseInt(this.id[1]);
+      if(calcOrientation(x1, y1, x2, y2) !== null) {                                                          // hit direct neighbour
       compareArray.push(newCell);
-      // direkte Nachbarzelle getroffen
-      this.classList.add("boxHighlight");
+      this.classList.add("boxHighlight");                
       $(this).css("background-color", "#8a8a8a");
       letterArray.push(this.innerHTML);
       wordCheck = letterArray.join("");
-      x = parseInt(storedCell[0]);
-      y = parseInt(storedCell[1]);
-      storedCell = newCell;
-      directionCheck(this.id, x, y)
-      //console.log(startCell);
-      // if correct word, applies color to td
-      if (wordArray.includes(wordCheck)) {                   
+      storedCell = newCell;   
+      if (wordArray.includes(wordCheck)) {                                            // if correct word, applies color to td             
         letterArray.forEach((element) =>
         $(".boxHighlight").removeClass("boxHighlight").addClass("solved"),
         $(".boxHighlight").css("background-color", "green")
         );
-        //$("td").removeClass("boxHighlight");
-      // adds crossing out and grey to word in list 
-        $("#" + wordCheck).css({
+        $("#" + wordCheck).css({                                                      // adds crossing out and grey to word in list 
           "text-decoration": "line-through",
           color: "#8a8a8a",
         });
         letterArray = [];
-      compareArray = [];
+        compareArray = [];
       }
-    } else {
-      $(".boxHighlight").css("background-color", "");
-      $("td").removeClass("boxHighlight");
+    } 
+  }
+    else {
+      $(".boxHighlight").css("background-color", "");                                // the "reset"-click, if the move was not valid,
+      $("td").removeClass("boxHighlight");                                           // sets this as the new startmove
       letterArray = [];
       compareArray = [];
       compareArray.push(newCell);
@@ -450,103 +431,49 @@ $("td").on("click", function () {
       this.classList.add("boxHighlight");
       $(this).css("background-color", "#8a8a8a");
       letterArray.push(this.innerHTML);
+      startCell = this.id[0] + this.id[1];
+      x1 = parseInt(this.id[0]);
+      y1 = parseInt(this.id[1]); 
+      console.log({x1, y1})
     }
   }
 }
 });
-// $("li#newWordEntry.listedItems").fi
+
 
 /*************** M A R K - W O R D - A S - C O M P L E T E ***********/
 
-
-
-/* var next = fnGetSquare(x, y) 
-            square = puzzle[next.y][next.x]; */
-
-var allOrientations = ['horizontal','horizontalBack','vertical','verticalUp',
+/** direction array for better handling and access **/
+var allDirections = ['horizontal','horizontalBack','vertical','verticalUp',
 'diagonal','diagonalUp','diagonalBack','diagonalUpBack'];
 
 // The definition of the orientation, calculates the next square given a
-// starting square (x,y) and distance (i) from that square.
-
-/* var nextOrientation = {
-horizontal:     function(x,y) { return {x: x+1, y: y  }; },
-horizontalBack: function(x,y) { return {x: x-1, y: y  }; },
-vertical:       function(x,y) { return {x: x,   y: y+1}; },
-verticalUp:     function(x,y) { return {x: x,   y: y-1}; },
-diagonal:       function(x,y) { return {x: x+1, y: y+1}; },
-diagonalBack:   function(x,y) { return {x: x-1, y: y+1}; },
-diagonalUp:     function(x,y) { return {x: x+1, y: y-1}; },
-diagonalUpBack: function(x,y) { return {x: x-1, y: y-1}; }
-}; */
-
-var nextOrientation = {
-  horizontal:     function(x,y) { return ( "" + (x+1) + y )  ; },
-  horizontalBack: function(x,y) { return x= x-1, y= y; },
-  vertical:       function(x,y) { return {x: x,   y: y+1}; },
-  verticalUp:     function(x,y) { return {x: x,   y: y-1}; },
-  diagonal:       function(x,y) { return {x: x+1, y: y+1}; },
-  diagonalBack:   function(x,y) { return {x: x-1, y: y+1}; },
-  diagonalUp:     function(x,y) { return {x: x+1, y: y-1}; },
-  diagonalUpBack: function(x,y) { return {x: x-1, y: y-1}; }
+// starting square (x,y) and distance (distance) from that square.
+var directions = {
+  horizontal:     function(x,y) { return {x: x+distance, y: y  }; },           //( "" + (x+1) + y )
+  horizontalBack: function(x,y) { return {x: x-distance, y: y  }; },              // x= x-1, y= y;
+  vertical:       function(x,y) { return {x: x,          y: y+distance}; },
+  verticalUp:     function(x,y) { return {x: x,          y: y-distance}; },
+  diagonal:       function(x,y) { return {x: x+distance, y: y+distance}; },
+  diagonalBack:   function(x,y) { return {x: x-distance, y: y+distance}; },
+  diagonalUp:     function(x,y) { return {x: x+distance, y: y-distance}; },
+  diagonalUpBack: function(x,y) { return {x: x-distance, y: y-distance}; }
   };
-    
 
-//next = orientations[orientation],
- 
-var nextCell
-var startCell
-function directionCheck(startCell, x, y) { 
-  //if () 
-  //for (i = 0; i < allOrientations.length; i++) {
-    nextCell = x + y;
-    startCell = startCell[0] + startCell[1];
+  // compares startPosition and currentPosition; blocks illegal moves
+  var calcOrientation = function (x1, y1, x2, y2) {
+    for (var allDirections in directions) {
+      var nextFn = directions[allDirections];
+      var nextPos = nextFn(x1, y1, 1);
 
-     console.log(startCell, newCell, "" + x + y, nextOrientation.horizontal(x, y)) 
-      
-
-//  }  
-// console.log(startCell, storedCell, newCell, allOrientations)
-  
-}
-
- /**
-    * Given two points, ensure that they are adjacent and determine what
-    * orientation the second point is relative to the first
-    *
-    * @param {int} x1: The x coordinate of the first point
-    * @param {int} y1: The y coordinate of the first point
-    * @param {int} x2: The x coordinate of the second point
-    * @param {int} y2: The y coordinate of the second point
-    */
- /*
- var calcOrientation = function (x1, y1, x2, y2) {
-
-  for (var orientation in wordfind.orientations) {
-    var nextFn = wordfind.orientations[orientation];
-    var nextPos = nextFn(x1, y1, 1);
-
-    if (nextPos.x === x2 && nextPos.y === y2) {
-      return orientation;
+      if (nextPos.x === x2 && nextPos.y === y2) {
+        return allDirections;
+      }
     }
-  }
 
-  return null;
-};
+    return null;
+  };
 
- */
-
-
-/* var lastOrientation = {
-  horizontal:     function(x,y) { return {x: x-1, y: y  }; },
-  horizontalBack: function(x,y) { return {x: x+1, y: y  }; },
-  vertical:       function(x,y) { return {x: x,   y: y-1}; },
-  verticalUp:     function(x,y) { return {x: x,   y: y+1}; },
-  diagonal:       function(x,y) { return {x: x-1, y: y-1}; },
-  diagonalBack:   function(x,y) { return {x: x+1, y: y-1}; },
-  diagonalUp:     function(x,y) { return {x: x-1, y: y+1}; },
-  diagonalUpBack: function(x,y) { return {x: x+1, y: y+1}; }
-  }; */
 
 
 
@@ -554,9 +481,7 @@ function directionCheck(startCell, x, y) {
 /************************T E S T - A R R A Y ************************/
 
 /*+++++TO DO's+++
-- get cell coords on event -- done for lookup
 - add a wordbuildig array on screen MAYBE
-- add directional intelligence
 - mark words, in case they did not enter the riddle
 
 - add a self-complete function?
@@ -564,6 +489,7 @@ function directionCheck(startCell, x, y) {
 - get cell coords on event -- done
 - grey out words if they are found -- done
 - have the color events react correctly (as in remove their css properties) -- done
+- add directional intelligence -- done
 */
 /*******************O P T I O N S - F O R - B O X - C H E C K *************** */
 /*
@@ -627,3 +553,4 @@ document.addEventListener('mouseover', () => {
   } 
 })
 */
+/* */
