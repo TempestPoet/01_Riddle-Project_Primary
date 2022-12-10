@@ -70,7 +70,7 @@ function newRandomLetter() {
 function addLetters() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("" + i + j).innerHTML = "0"; //newRandomLetter();
+      document.getElementById("" + i + j).innerHTML = newRandomLetter();
     })
   );
   // document.getElementById("cell75").innerHTML = "E"
@@ -106,7 +106,7 @@ function reverseString(rndWord) {
 
 //*************************************R A N D O M - W O R D - I N P U T******************F U N C T I O N
 
-function testButton2() {
+function wordPlacement() {
   var row = Math.floor(Math.random() * 10);
   var col = Math.floor(Math.random() * 10);
   var cell = document.getElementById("" + row + col);
@@ -132,7 +132,7 @@ function testButton2() {
          
         }
       } else {
-        testButton2();
+        wordPlacement();
       }
       break;
     // ----- C O L U M N S ------
@@ -148,7 +148,7 @@ function testButton2() {
         
         }
       } else {
-        testButton2();
+        wordPlacement();
       }
       break;
 
@@ -166,7 +166,7 @@ function testButton2() {
         
         }
       } else {
-        testButton2();
+        wordPlacement();
       }
       break;
     // ----- D I A G O N A L - TopRight to BottomLeft------
@@ -184,7 +184,7 @@ function testButton2() {
          
         }
       } else {
-        testButton2();
+        wordPlacement();
       }
       break;
     // ------ R O W S - R E V E R S E ---------
@@ -201,7 +201,7 @@ function testButton2() {
           
         }
       } else {
-        testButton2();
+        wordPlacement();
       }
       break;
     // ----- C O L U M N S - R E V E R S E------
@@ -218,7 +218,7 @@ function testButton2() {
        
         }
       } else {
-        testButton2();
+        wordPlacement();
       }
       break;
     // ----- D I A G O N A L S - R E V E R S E------
@@ -236,7 +236,7 @@ function testButton2() {
           
         }
       } else {
-        testButton2();
+        wordPlacement();
       }
       break;
 
@@ -257,7 +257,7 @@ function testButton2() {
           
         }
       } else {
-        testButton2();
+        wordPlacement();
       }
       break;
 
@@ -344,17 +344,25 @@ function testWord(bool, row2, col2, switchRandomizer2) {
 }
 
 /***********************C R E A T E - R I D D L E***********************/
-
+var wordCheck = "";
 
 function drawRiddle() {
-  
-  addLetters();
+ // resets all stored css properties for all items 
+  $("td").css("background-color", "");                                             
+  $("td").removeClass("boxHighlight");
+  $("td").removeClass("solved");
+  $(".listedItems").css({                                                      
+    "text-decoration": "",
+    "color": "",
+  });
+  wordCheck = ""
 
+  addLetters();
   for (let x = wordArray.length - 1; x >= 0; x--) {
     rndWord = wordArray[x];
     rndWord = rndWord.split("");
   //  compareArray.push(rndWord);
-    testButton2();
+    wordPlacement();
   }
   replaceZero();
   
@@ -374,7 +382,7 @@ function replaceZero() {
 /*************************Mouse Event - C L I C K - O B S E R V E R  ******************************* */
 
 var compareArray = [];
-let wordCheck = "";
+
 var letterArray = [];
 var startCell, newCell, storedCell;
 var x1, y1, x2, y2; 
@@ -414,7 +422,7 @@ $("td").on("click", function () {
         );
         $("#" + wordCheck).css({                                                      // adds crossing out and grey to word in list 
           "text-decoration": "line-through",
-          color: "#8a8a8a",
+          "color": "#8a8a8a",
         });
         letterArray = [];
         compareArray = [];
