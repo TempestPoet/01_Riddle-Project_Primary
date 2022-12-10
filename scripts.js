@@ -70,10 +70,9 @@ function newRandomLetter() {
 function addLetters() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
-      document.getElementById("" + i + j).innerHTML = newRandomLetter();
+      document.getElementById("" + i + j).innerHTML = 0;
     })
   );
-  // document.getElementById("cell75").innerHTML = "E"
 }
 //*************************************C L E A R - L I S T******************F U N C T I O N************* */
 function deleteList() {
@@ -107,10 +106,10 @@ function reverseString(rndWord) {
 //*************************************R A N D O M - W O R D - I N P U T******************F U N C T I O N
 
 function wordPlacement() {
-  var row = Math.floor(Math.random() * 10);
-  var col = Math.floor(Math.random() * 10);
-  var cell = document.getElementById("" + row + col);
-  var switchRandomizer = Math.floor(Math.random() * 8) + 1;
+  row = Math.floor(Math.random() * 10);
+  col = Math.floor(Math.random() * 10);
+  cell = document.getElementById("" + row + col);
+  switchRandomizer = Math.floor(Math.random() * 8) + 1;
 
   
   
@@ -361,7 +360,7 @@ function drawRiddle() {
   for (let x = wordArray.length - 1; x >= 0; x--) {
     rndWord = wordArray[x];
     rndWord = rndWord.split("");
-  //  compareArray.push(rndWord);
+    compareArray.push(rndWord);
     wordPlacement();
   }
   replaceZero();
@@ -373,7 +372,7 @@ function replaceZero() {
   riddleArray.forEach((row, i) =>
     row.forEach((item, j) => {
       if (document.getElementById("" + i + j).innerHTML === "0") {
-        document.getElementById("" + i + j).innerHTML = 0; //newRandomLetter();
+        document.getElementById("" + i + j).innerHTML = newRandomLetter();
       }
     })
   );
@@ -442,11 +441,20 @@ $("td").on("click", function () {
       startCell = this.id[0] + this.id[1];
       x1 = parseInt(this.id[0]);
       y1 = parseInt(this.id[1]); 
-      console.log({x1, y1})
+      
     }
   }
 }
 });
+
+/* 
+function cleanUp() {
+  $(".boxHighlight").css("background-color", "");                                // the "reset"-click, if the move was not valid,
+      $("td").removeClass("boxHighlight");                                           // sets this as the new startmove
+      letterArray = [];
+      compareArray = [];
+} */
+
 
 
 /*************** M A R K - W O R D - A S - C O M P L E T E ***********/
