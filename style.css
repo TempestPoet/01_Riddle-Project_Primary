@@ -1,12 +1,19 @@
 root {
     display: inline-flex;
+    
 }
 
 body {
     text-align:center;
     background-image: url('/public/img/1920x1056_questionMark_bg.jpg');
    color: rgb(255, 255, 255); 
+   overflow: hidden;
 }
+div.form {
+  display: flex;
+  flex-direction: column;
+}
+
  tr > td:hover {
   transform: scale(1.15);
   background-color: #b6b8b6;
@@ -19,9 +26,15 @@ body {
 }  
 
 
-
 p {
     font-family:monospace;
+}
+label {
+  font-size: larger;
+  font-weight: 400;
+  float: inline-start;
+  margin-right: 1em;
+  
 }
 
 table {
@@ -51,15 +64,26 @@ td {
     border-radius: 1.7rem;
     transform: scale(1);
     transition: transform 200ms;
+    
   }
   .btn:hover {
     transform: scale(1.1);
   }
-#riddleButton, #clearButton {
-    margin: .5rem .5rem;
+#riddleButton {
+  margin-left: 1em;
 }
+
+#word-submit-button {
+  margin-left: 1.5em;
+}
+
 #clearButton {
     background-color: #b20a37;
+    
+    margin: 3em 1em ;
+}
+#solveRiddle {
+  background: green;
 }
 
   .form__group input {
@@ -73,12 +97,13 @@ td {
     width: border-box;
     text-transform: uppercase; 
     transition: background-color 500ms;
-    /* &:not(:focus):valid {
-        background-color: $cd-valid;
-        border: 2px solid $cd-valid;
-        color: $cd-txt--invalid;
-    } */
   }
+  .form__group input:hover {
+    transform: scale(1.15);
+    
+    
+  }
+
   .form__group input:focus {
     border: 2px solid #6300a0;
   }
