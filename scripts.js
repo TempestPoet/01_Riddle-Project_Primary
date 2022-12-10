@@ -105,7 +105,10 @@ function reverseString(rndWord) {
 
 //*************************************R A N D O M - W O R D - I N P U T******************F U N C T I O N
 
+  
+  
 function wordPlacement() {
+ // for( let i = 0; i < 200; i++) {
   row = Math.floor(Math.random() * 10);
   col = Math.floor(Math.random() * 10);
   cell = document.getElementById("" + row + col);
@@ -264,9 +267,9 @@ function wordPlacement() {
     default:
       break;
     
-    //return cell.innerHTML;
+
   }
-}
+} 
 
 /**************************W O R D - M A T C H - C H E C K E R***************** */
 function testWord(bool, row2, col2, switchRandomizer2) {
@@ -391,6 +394,7 @@ var distance
 $("td").on("click", function () {
   newCell = this.id[0] + this.id[1];
   distance = letterArray.length
+  
   //console.log(savedLetterArray)
   if (compareArray.includes(newCell) === false) {                                  //the initial-click on the riddle field when starting anew
   if (letterArray.length === 0) {
@@ -492,98 +496,25 @@ var directions = {
 /****** S E L F - S O L V E R ******/
 
   riddleSolver.addEventListener("click", () => {
-    /* $(".boxHighlight").css("background-color", "");                                
-    $("td").removeClass("boxHighlight");                                          
-      letterArray = [];
-      compareArray = []; */
     for (var i = 0; i < savedLetterArray.length; i++) { 
     document.getElementById(savedLetterArray[i]).style.backgroundColor = "green";
     }
   });
     
       
-  
-
-
-
-
-
-
 
 
 /************************T E S T - A R R A Y ************************/
 
 /*+++++TO DO's+++
-- add a wordbuildig array on screen MAYBE
+- add a wordbuilding array on screen MAYBE
 - mark words, in case they did not enter the riddle
 
-- add a self-complete function?
+- add a self-complete function? -- done
 - have words enter counter-diagonal -- done
 - get cell coords on event -- done
 - grey out words if they are found -- done
 - have the color events react correctly (as in remove their css properties) -- done
 - add directional intelligence -- done
 */
-/*******************O P T I O N S - F O R - B O X - C H E C K *************** */
-/*
-lastclick.x = -1
-lastclick.y = -1
 
-function clicktest() => {
-  aktuellclick.x = coordX
-  aktuellclick.y = coordY
-  if lastclick -1 then lastclick = firstclick
-  firstclick = farbe, coordx, coordY
-  aktuellcluck = farbe;
-
-    prüfe mit deltaX deltaY, if lastclick = -1, -1 pattern (z.b) über differenz,
-    färbe alle felder auf dem weg;
-
-}
-*/
-
-/*+++++++++++++++++++++++H E L P F U L - F U N C T I O N S +++++++++++++++++++*/
-
-/**** filters through items *******/
-/* 
-$(filterItems(wordArray, wordCheck))
-function filterItems(arr, query) {
-  return arr.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
-} */
-
-/******** allows mousedown to react to entire length of mousedown, not just entry *** */
-
-/* 
-let mouseDown = 0;
-document.onmousedown = () => {
-  ++mouseDown;
-  if (mouseDown) {
-  }
-}
-document.onmouseup = () => {
-  --mouseDown;
-  if (mouseDown) {
-  }
-}
-
- */
-
-/**********Working version of colorChanger on mouseDown event *********************/
-
-/* class hiddenWords {
-  constructor(rndWord, )
-} */
-
-/*
-document.addEventListener('mouseover', () => {
-  if (mouseDown > 0){
-  $('tr > td:hover').css('background-color', 'green');} 
-})
-
-document.addEventListener('mouseover', () => {
-  if (mouseDown == 0){
-  $('tr > td:hover').css('background-color', '');
-  } 
-})
-*/
-/* */
