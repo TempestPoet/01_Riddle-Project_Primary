@@ -379,7 +379,7 @@ function drawRiddle() {
     } else {
       replaceZero();
       [x] = [x - 1];
-      return window.alert("Not all words fit in the riddle. You can find words up to " + wordArray[x] + " / " + reverseString(wordArray[x]))
+      return window.alert("Not all words fit in the riddle. \n\nYou can find words up to " + wordArray[x].toUpperCase() + " / " + reverseString(wordArray[x]).toUpperCase())
     }
   }
   replaceZero();
