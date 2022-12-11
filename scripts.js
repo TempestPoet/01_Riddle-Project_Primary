@@ -362,6 +362,7 @@ function drawRiddle() {
   $("td").css("background-color", "");                                             
   $("td").removeClass("boxHighlight");
   $("td").removeClass("solved");
+  $(".listedItems").removeClass("inRiddle");
   $(".listedItems").css({                                                      
     "text-decoration": "",
     "color": "",
@@ -377,6 +378,7 @@ function drawRiddle() {
     $("#" + wordArray[x]).addClass("inRiddle")
     rndWord = rndWord.split("");
     wordPlacement();
+    
     } else {
       replaceZero();
       [x] = [x - 1];
@@ -454,7 +456,7 @@ $("td").on("click", function () {
   }
     else {
       $(".boxHighlight").css("background-color", "");                                // the "reset"-click, if the move was not valid,
-      $("td").removeClass("boxHighlight");                                           // sets this as the new startmove
+      $("td").removeClass("boxHighlight", "inRiddle");                                           // sets this as the new startmove
       letterArray = [];
       compareArray = [];
       compareArray.push(newCell);
