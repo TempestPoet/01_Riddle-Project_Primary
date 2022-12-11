@@ -18,6 +18,7 @@ div.form {
   cursor:default;
 }
 
+
 tr > td:hover {
   transform: scale(1.15);
   background-color: #b6b8b6;

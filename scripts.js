@@ -374,6 +374,7 @@ function drawRiddle() {
   for (let x = 0; x < wordArray.length ; x++) {
     if (testRun <= 100) {
     rndWord = wordArray[x];
+    $("#" + wordArray[x]).addClass("inRiddle")
     rndWord = rndWord.split("");
     wordPlacement();
     } else {
@@ -514,6 +515,10 @@ var directions = {
     for (var i = 0; i < savedLetterArray.length; i++) { 
     document.getElementById(savedLetterArray[i]).style.backgroundColor = "green";
     }
+    $(".inRiddle").css({                                                      // adds crossing out and grey to word in list 
+      "text-decoration": "line-through",
+      "color": "#8a8a8a",
+    });
   });
     
       
