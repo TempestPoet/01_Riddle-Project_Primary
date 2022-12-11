@@ -25,7 +25,7 @@ wordInputField.addEventListener("keydown", function (e) {
 function validate(e) {
   if (
     wordInputField.value.length > 2 &&
-    wordInputField.value.length < 11 &&
+    wordInputField.value.length < 9 &&
     /[^a-zA-Z]+/g.test(wordInputField.value) === false &&
     wordArray.includes(wordInputField.value) === false  
   ) {
