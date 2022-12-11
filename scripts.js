@@ -456,7 +456,7 @@ $("td").on("click", function () {
   }
     else {
       $(".boxHighlight").css("background-color", "");                                // the "reset"-click, if the move was not valid,
-      $("td").removeClass("boxHighlight", "inRiddle");                                           // sets this as the new startmove
+      $("td").removeClass("boxHighlight");                                           // sets this as the new startmove
       letterArray = [];
       compareArray = [];
       compareArray.push(newCell);
