@@ -104,11 +104,14 @@ function reverseString(rndWord) {
 }
 
 //*************************************R A N D O M - W O R D - I N P U T******************F U N C T I O N
-
+var testRun = 0;
   
-  
+ 
 function wordPlacement() {
+ // if (testRun <= 4) {
+ console.log(parseInt(testRun++));
  // for( let i = 0; i < 200; i++) {
+  
   row = Math.floor(Math.random() * 10);
   col = Math.floor(Math.random() * 10);
   cell = document.getElementById("" + row + col);
@@ -269,8 +272,11 @@ function wordPlacement() {
     
 
   }
-} 
-
+} //else {
+ // window.alert("you can solve up to" + rndWord)
+  //return;
+//}
+//}
 /**************************W O R D - M A T C H - C H E C K E R***************** */
 function testWord(bool, row2, col2, switchRandomizer2) {
   var cell = bool;
@@ -352,6 +358,7 @@ var wordCheck = "";
 function drawRiddle() {
  // resets all stored css properties for all items as well as the dependant arrays 
   savedLetterArray = [];
+  testRun = 0;
   $("td").css("background-color", "");                                             
   $("td").removeClass("boxHighlight");
   $("td").removeClass("solved");
@@ -361,11 +368,19 @@ function drawRiddle() {
   });
   wordCheck = ""
 
+ 
   addLetters();
-  for (let x = wordArray.length - 1; x >= 0; x--) {
+  
+  for (let x = 0; x < wordArray.length ; x++) {
+    if (testRun <= 100) {
     rndWord = wordArray[x];
     rndWord = rndWord.split("");
     wordPlacement();
+    } else {
+      replaceZero();
+      [x] = [x - 1];
+      return window.alert("Not all words fit in the riddle. You can find words up to " + wordArray[x] + " / " + reverseString(wordArray[x]))
+    }
   }
   replaceZero();
   
